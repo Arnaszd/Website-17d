@@ -1,0 +1,373 @@
+/* Base styles */
+body {
+  margin: 0;
+  padding: 0;
+  background: #000000;
+}
+
+/* Starry background */
+.starry-background {
+  background: #000000;
+  position: relative;
+  overflow: hidden;
+}
+
+.starry-background::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(1px 1px at 10% 10%, rgba(255, 255, 255, 0.1) 1px, transparent 0),
+    radial-gradient(2px 2px at 30% 30%, rgba(255, 255, 255, 0.15) 1px, transparent 0),
+    radial-gradient(1px 1px at 50% 50%, rgba(255, 255, 255, 0.1) 1px, transparent 0),
+    radial-gradient(2px 2px at 70% 70%, rgba(255, 255, 255, 0.15) 1px, transparent 0),
+    radial-gradient(1px 1px at 90% 90%, rgba(255, 255, 255, 0.1) 1px, transparent 0);
+  background-size: 300px 300px;
+  animation: twinkle 15s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes twinkle {
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0.3;
+  }
+} 
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom hover effects */
+.hover-scale {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.hover-scale:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+}
+
+.hover-bright {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.hover-bright:hover {
+  filter: brightness(1.3);
+  letter-spacing: 1px;
+}
+
+.hover-bright::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background: linear-gradient(90deg, transparent, #fff, transparent);
+  transform-origin: bottom right;
+  transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+.hover-bright:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Custom animations */
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+/* Hover effects */
+.hover-glow {
+  transition: all 0.3s ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  transform: translateY(-5px);
+}
+
+.hover-slide {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.hover-slide::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, white, transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.hover-slide:hover::after {
+  transform: translateX(100%);
+}
+
+/* Scroll animations */
+[data-aos] {
+  pointer-events: none;
+}
+
+[data-aos].aos-animate {
+  pointer-events: auto;
+}
+
+/* Custom animations */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.2);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.1);
+  }
+}
+
+.pulse {
+  animation: pulse 4s ease-in-out infinite;
+}
+
+/* Text gradient effect */
+.text-gradient {
+  background: linear-gradient(45deg, #fff, #888, #fff);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient 8s ease infinite;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Neon glow effect */
+.neon-glow {
+  text-shadow: 0 0 5px rgba(255,255,255,0.3),
+               0 0 10px rgba(255,255,255,0.2),
+               0 0 15px rgba(255,255,255,0.1);
+  animation: neon 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes neon {
+  from {
+    text-shadow: 0 0 5px rgba(255,255,255,0.3),
+                 0 0 10px rgba(255,255,255,0.2),
+                 0 0 15px rgba(255,255,255,0.1);
+  }
+  to {
+    text-shadow: 0 0 10px rgba(255,255,255,0.4),
+                 0 0 20px rgba(255,255,255,0.3),
+                 0 0 30px rgba(255,255,255,0.2);
+  }
+}
+
+/* Spotify icon hover fix */
+.spotify-icon {
+  transition: all 0.3s ease;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.spotify-icon:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+/* Flicker effect */
+.flicker-text {
+  animation: flicker 3s linear infinite;
+  display: inline-block;
+}
+
+@keyframes flicker {
+  0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
+    opacity: 1;
+  }
+  20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+    opacity: 0.33;
+  }
+}
+
+/* Offset flicker timing for each word */
+.flicker-text:nth-child(1) { animation-delay: 0s; }
+.flicker-text:nth-child(2) { animation-delay: 0.3s; }
+.flicker-text:nth-child(3) { animation-delay: 0.6s; }
+.flicker-text:nth-child(4) { animation-delay: 0.9s; }
+.flicker-text:nth-child(5) { animation-delay: 1.2s; }
+
+/* Playlist hover effect */
+.playlist-hover {
+  position: relative;
+}
+
+.playlist-hover .marquee-content {
+  display: flex;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.playlist-hover:hover .marquee-content {
+  opacity: 1;
+  animation: marquee 20s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.playlist-hover span {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+/* Social Media Links */
+.social-link-container {
+  position: relative;
+  overflow: hidden;
+  height: 80px;
+  background: #1a1a1a;
+}
+
+.social-link {
+  position: relative;
+  overflow: hidden;
+}
+
+.social-link:hover {
+  transform: scale(1.02);
+}
+
+.social-link:hover div {
+  transform: translateY(1px) rotate(45deg);
+  border-color: rgba(255,255,255,1);
+}
+
+.arrow-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid white;
+  border-radius: 50%;
+  padding: 4px;
+}
+
+.hover-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  background: #1DB954;
+  white-space: nowrap;
+  padding: 20px 0;
+}
+
+.hover-content span {
+  display: inline-block;
+  margin-right: 30px;
+  font-size: 32px;
+  animation: marquee 20s linear infinite;
+}
+
+.hover-content .arrow {
+  margin-left: 10px;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Spotify specific color */
+.social-link-container:first-child .hover-content {
+  background: #1DB954;
+}
+
+/* Other platforms background */
+.social-link-container:not(:first-child) .hover-content {
+  background: #242424;
+} 
