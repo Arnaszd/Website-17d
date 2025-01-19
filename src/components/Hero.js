@@ -104,7 +104,7 @@ const Hero = () => {
               }}
             >
               <img 
-                src="C:\Users\Vardenis\Desktop\17d-website\Website-17d\public\images\illusion.png" 
+                src="/images/OutOfMyHead.jpg" 
                 alt="Supermassive Black Hole by Seeko"
                 style={{
                   width: '100%',
@@ -112,8 +112,8 @@ const Hero = () => {
                   marginBottom: '15px'
                 }}
               />
-              <h3 style={{ fontSize: '24px', marginBottom: '5px' }}>Seeko</h3>
-              <p style={{ opacity: '0.7' }}>Supermassive Black Hole</p>
+              <h3 style={{ fontSize: '24px', marginBottom: '5px' }}>Samarth goel</h3>
+              <p style={{ opacity: '0.7' }}>Out Of My Head</p>
             </div>
 
             <div 
@@ -128,7 +128,7 @@ const Hero = () => {
               }}
             >
               <img 
-                src="C:\Users\Vardenis\Desktop\17d-website\Website-17d\public\images\illusion.png" 
+                src="/images/illusion.png" 
                 alt="Illusion by El Fuego"
                 style={{
                   width: '100%',
@@ -138,6 +138,52 @@ const Hero = () => {
               />
               <h3 style={{ fontSize: '24px', marginBottom: '5px' }}>Illusion</h3>
               <p style={{ opacity: '0.7' }}>El Fuego Mus!c</p>
+            </div>
+            <div 
+              data-aos="fade-up"
+              data-aos-delay="200"
+              style={{
+                cursor: 'pointer',
+                transition: 'transform 0.3s ease',
+                ':hover': {
+                  transform: 'translateY(-10px)'
+                }
+              }}
+            >
+              <img 
+                src="/images/Saxobeat.jpg" 
+                alt="Mr Saxobeat by Marco Carbotti"
+                style={{
+                  width: '100%',
+                  borderRadius: '8px',
+                  marginBottom: '15px'
+                }}
+              />
+              <h3 style={{ fontSize: '24px', marginBottom: '5px' }}>Mr. Saxobeat</h3>
+              <p style={{ opacity: '0.7' }}>Marco Carbotti</p>
+            </div>
+            <div 
+              data-aos="fade-up"
+              data-aos-delay="200"
+              style={{
+                cursor: 'pointer',
+                transition: 'transform 0.3s ease',
+                ':hover': {
+                  transform: 'translateY(-10px)'
+                }
+              }}
+            >
+              <img 
+                src="/images/Zeus.png" 
+                alt="Zeus by Venicious"
+                style={{
+                  width: '100%',
+                  borderRadius: '8px',
+                  marginBottom: '15px'
+                }}
+              />
+              <h3 style={{ fontSize: '24px', marginBottom: '5px' }}>Zeus</h3>
+              <p style={{ opacity: '0.7' }}>Venicious</p>
             </div>
           </div>
         </div>
