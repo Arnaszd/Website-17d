@@ -1,4 +1,5 @@
 import React from 'react';
+import StarryBackground from './StarryBackground';
 
 const StatCard = ({ title, value, icons, imageGrid }) => {
   return (
@@ -111,38 +112,43 @@ const Stats = () => {
   return (
     <section style={{
       padding: '120px 0',
-      background: 'transparent'
+      background: '#000000',
+      position: 'relative',
+      overflow: 'hidden'
     }}>
-      <div style={{
-        maxWidth: '1400px',
-        margin: '0 auto',
-        padding: '0 20px'
-      }}>
+      <StarryBackground />
+      <div style={{ position: 'relative', zIndex: 2 }}>
         <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: '40px'
+          maxWidth: '1400px',
+          margin: '0 auto',
+          padding: '0 20px'
         }}>
-          <div data-aos="zoom-in-up" data-aos-delay="200">
-            <StatCard
-              title="All-time streams"
-              value="2.5M"
-              icons={['spotify', 'youtube', 'itunes', 'soundcloud']}
-            />
-          </div>
-          <div data-aos="zoom-in-up" data-aos-delay="400">
-            <StatCard
-              title="Streaming Monthly"
-              value="600K+"
-              icons={['spotify', 'youtube', 'itunes', 'soundcloud']}
-            />
-          </div>
-          <div data-aos="zoom-in-up" data-aos-delay="600">
-            <StatCard
-              title="Talented artists"
-              value="15+"
-              imageGrid={true}
-            />
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: '40px'
+          }}>
+            <div data-aos="zoom-in-up" data-aos-delay="200">
+              <StatCard
+                title="All-time streams"
+                value="2.5M"
+                icons={['spotify', 'youtube', 'itunes', 'soundcloud']}
+              />
+            </div>
+            <div data-aos="zoom-in-up" data-aos-delay="400">
+              <StatCard
+                title="Streaming Monthly"
+                value="600K+"
+                icons={['spotify', 'youtube', 'itunes', 'soundcloud']}
+              />
+            </div>
+            <div data-aos="zoom-in-up" data-aos-delay="600">
+              <StatCard
+                title="Talented artists"
+                value="15+"
+                imageGrid={true}
+              />
+            </div>
           </div>
         </div>
       </div>

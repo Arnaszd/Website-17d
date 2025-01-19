@@ -6,8 +6,10 @@ import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import Stats from './components/Stats';
 import ArtistSlider from './components/ArtistSlider';
-import PlaylistSection from './components/PlaylistSection';
+import SocialMedia from './components/SocialMedia';
 import Footer from './components/Footer';
+import StarryBackground from './components/StarryBackground';
+import PlaylistSection from './components/PlaylistSection';
 import './styles.css';
 
 function App() {
@@ -23,16 +25,22 @@ function App() {
 
   return (
     <div style={{
-      backgroundColor: '#1a1a1a',
+      backgroundColor: '#000000',
       color: 'white',
       minHeight: '100vh',
+      position: 'relative',
+      overflow: 'hidden'
     }}>
-      <Navigation data-aos="fade-down" data-aos-duration="1000" />
-      <Hero />
-      <Stats />
-      <ArtistSlider />
-      <PlaylistSection />
-      <Footer />
+      <StarryBackground />
+      <div style={{ position: 'relative', zIndex: 2 }}>
+        <Navigation data-aos="fade-down" data-aos-duration="1000" />
+        <Hero />
+        <Stats />
+        <ArtistSlider />
+        <SocialMedia />
+        <PlaylistSection />
+        <Footer />
+      </div>
     </div>
   );
 }

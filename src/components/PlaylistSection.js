@@ -1,80 +1,143 @@
 import React from 'react';
+import StarryBackground from './StarryBackground';
 
 const PlaylistSection = () => {
-  const platforms = [
-    { name: 'Spotify', link: 'https://spotify.com' },
-    { name: 'Apple Music', link: 'https://music.apple.com' },
-    { name: 'Tik Tok', link: 'https://tiktok.com' },
-    { name: 'Instagram', link: 'https://instagram.com' },
-    { name: 'Amazon Music', link: 'https://music.amazon.com' },
-    { name: 'YouTube', link: 'https://youtube.com' }
+  const playlists = [
+    { 
+      name: '2025 TIKTOK TECHNO', 
+      image: '/images/playlist1.jpg',
+      url: 'https://open.spotify.com/playlist/2yIlZELYEw4UmYUwoXVI2n?si=a1fcf3dbaa024db6'
+    },
+    { 
+      name: 'Technogasm', 
+      image: '/images/playlist2.jpg',
+      url: 'https://open.spotify.com/playlist/15PnocaouNCY9NQWQOrXtu?si=cc6c96d908ba4b22'
+    }
   ];
 
   return (
     <section style={{
-      padding: '120px 20px',
-      background: '#1a1a1a',
-      position: 'relative'
+      padding: '100px 20px',
+      background: '#000000',
+      position: 'relative',
+      overflow: 'hidden'
     }}>
-      <div style={{
+      <StarryBackground />
+      <div style={{ 
+        position: 'relative', 
+        zIndex: 2,
         maxWidth: '1400px',
-        margin: '0 auto'
+        margin: '0 auto',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '60px'
       }}>
-        <h2 
-          data-aos="fade-up"
-          style={{
-            fontSize: 'clamp(40px, 6vw, 80px)',
-            marginBottom: '80px',
-            textAlign: 'center'
-          }}
-        >
-          Our social media
-        </h2>
-
+        {/* Header */}
         <div style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center'
+        }}>
+          <h2 
+            style={{
+              fontSize: 'clamp(40px, 8vw, 80px)',
+              margin: 0
+            }}
+          >
+            Our Playlists
+          </h2>
+          <a 
+            href="https://spotify.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              width: '50px',
+              height: '50px',
+              background: 'rgba(255,255,255,0.1)',
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
+            <img 
+              src="/icons/spotify.svg" 
+              alt="Spotify"
+              style={{
+                width: '25px',
+                height: '25px',
+                filter: 'brightness(0) invert(1)'
+              }}
+            />
+          </a>
+        </div>
+
+        {/* Playlists */}
+        <div style={{ 
           display: 'flex',
           flexDirection: 'column',
           gap: '30px'
         }}>
-          {platforms.map((platform, index) => (
-            <a
-              key={platform.name}
-              href={platform.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-aos="fade-up"
-              data-aos-delay={index * 100}
-              className="social-link"
+          {playlists.map((playlist) => (
+            <div
+              key={playlist.name}
               style={{
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                padding: '20px',
-                color: 'white',
-                textDecoration: 'none',
-                fontSize: '32px',
-                background: '#1a1a1a',
-                transition: 'all 0.3s ease'
+                padding: '20px 0',
+                borderBottom: '1px solid rgba(255,255,255,0.1)'
               }}
             >
-              <span>{platform.name}</span>
-              <div style={{
-                width: '32px',
-                height: '32px',
-                display: 'flex',
+              <div style={{ 
+                display: 'flex', 
                 alignItems: 'center',
-                justifyContent: 'center',
-                border: '1px solid rgba(255,255,255,0.8)',
-                borderRadius: '50%',
-                fontSize: '18px',
-                lineHeight: 1,
-                padding: '0',
-                transform: 'translateY(1px)',
-                transition: 'all 0.3s ease'
+                gap: '20px'
               }}>
-                ↗
+                <img 
+                  src={playlist.image} 
+                  alt={playlist.name}
+                  style={{
+                    width: '60px',
+                    height: '60px',
+                    borderRadius: '5px'
+                  }}
+                />
+                <span style={{ fontSize: '24px' }}>{playlist.name}</span>
               </div>
-            </a>
+              
+              <a
+                href="#"
+                style={{
+                  color: 'white',
+                  textDecoration: 'none',
+                  fontSize: '20px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  transition: 'transform 0.3s ease'
+                }}
+                onMouseEnter={(e) => {
+                  const arrow = e.currentTarget.querySelector('.arrow');
+                  if (arrow) arrow.style.transform = 'translateX(5px)';
+                }}
+                onMouseLeave={(e) => {
+                  const arrow = e.currentTarget.querySelector('.arrow');
+                  if (arrow) arrow.style.transform = 'translateX(0)';
+                }}
+              >
+                Go to playlist 
+                <span 
+                  className="arrow"
+                  style={{
+                    display: 'inline-block',
+                    transition: 'transform 0.3s ease'
+                  }}
+                >
+                  →
+                </span>
+              </a>
+            </div>
           ))}
         </div>
       </div>

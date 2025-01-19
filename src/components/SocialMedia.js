@@ -1,74 +1,94 @@
 import React from 'react';
+import StarryBackground from './StarryBackground';
+
+const socialMediaStyle = {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  padding: '20px',
+  fontSize: 'clamp(24px, 4vw, 32px)',
+  color: 'white',
+  cursor: 'pointer',
+  transition: 'all 0.3s ease',
+  position: 'relative',
+  overflow: 'hidden',
+  borderRadius: '8px',
+  margin: '10px 0',
+}
+
+const socialLinks = [
+  { name: 'Spotify', color: '#1DB954' },
+  { name: 'Tik Tok', color: '#ff0050' },
+  { name: 'Instagram', color: '#E4405F' },
+  { name: 'YouTube', color: '#FF0000' },
+];
+
+const SocialMediaLink = ({ name, color }) => {
+  return (
+    <div
+      data-aos="fade-up"
+      style={{
+        ...socialMediaStyle,
+        ':hover': {
+          backgroundColor: color,
+          transform: 'translateX(10px)',
+          boxShadow: `0 10px 20px ${color}40`,
+        }
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.backgroundColor = color;
+        e.currentTarget.style.transform = 'translateX(10px)';
+        e.currentTarget.style.boxShadow = `0 10px 20px ${color}40`;
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.backgroundColor = 'transparent';
+        e.currentTarget.style.transform = 'translateX(0)';
+        e.currentTarget.style.boxShadow = 'none';
+      }}
+    >
+      <span>{name}</span>
+      <span 
+        style={{
+          fontSize: '28px',
+          opacity: '0.8',
+          transform: 'translateY(2px)',
+          transition: 'all 0.3s ease',
+        }}
+      >
+        ⟶
+      </span>
+    </div>
+  );
+};
 
 const SocialMedia = () => {
-  const platforms = [
-    { name: 'Spotify', link: 'https://spotify.com' },
-    { name: 'Apple Music', link: 'https://music.apple.com' },
-    { name: 'Tik Tok', link: 'https://tiktok.com' },
-    { name: 'Instagram', link: 'https://instagram.com' },
-    { name: 'Amazon Music', link: 'https://music.amazon.com' },
-    { name: 'YouTube', link: 'https://youtube.com' }
-  ];
-
   return (
     <section style={{
-      padding: '120px 20px',
-      background: '#1a1a1a',
-      position: 'relative'
+      padding: '100px 20px',
+      background: '#000000',
+      position: 'relative',
+      overflow: 'hidden'
     }}>
-      <div style={{
-        maxWidth: '1400px',
-        margin: '0 auto'
-      }}>
-        <h2 
+      <StarryBackground />
+      <div style={{ position: 'relative', zIndex: 2 }}>
+        <h1 
           data-aos="fade-up"
           style={{
-            fontSize: 'clamp(40px, 6vw, 80px)',
-            marginBottom: '80px',
+            fontSize: 'clamp(40px, 8vw, 80px)',
+            marginBottom: '60px',
             textAlign: 'center'
           }}
         >
           Our social media
-        </h2>
-
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '30px'
-        }}>
-          {platforms.map((platform, index) => (
-            <a
-              key={platform.name}
-              href={platform.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-aos="fade-up"
-              data-aos-delay={index * 100}
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                padding: '20px',
-                color: 'white',
-                textDecoration: 'none',
-                fontSize: '32px'
-              }}
-              className="hover-bright"
-            >
-              <span>{platform.name}</span>
-              <span style={{
-                width: '24px',
-                height: '24px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                border: '1px solid white',
-                borderRadius: '50%',
-                padding: '4px'
-              }}>
-                ↗
-              </span>
-            </a>
+        </h1>
+        
+        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+          {socialLinks.map((link, index) => (
+            <SocialMediaLink 
+              key={link.name}
+              name={link.name}
+              color={link.color}
+            />
           ))}
         </div>
       </div>
@@ -76,4 +96,4 @@ const SocialMedia = () => {
   );
 };
 
-export default SocialMedia; 
+export default SocialMedia;

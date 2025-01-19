@@ -1,0 +1,10 @@
+.arrow-icon {
+  position: relative;
+  overflow: hidden;
+}
+
+div:hover .arrow-icon {
+  transform: rotate(45deg);
+  background-color: white;
+  color: #1a1a1a;
+} 
