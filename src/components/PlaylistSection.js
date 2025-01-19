@@ -20,7 +20,7 @@ const PlaylistSection = () => {
       padding: '100px 20px',
       background: '#000000',
       position: 'relative',
-      overflow: 'hidden'
+      overflow: 'visible'
     }}>
       <StarryBackground />
       <div style={{ 

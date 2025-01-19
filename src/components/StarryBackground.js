@@ -1,36 +1,57 @@
-import React, { useEffect, useRef } from 'react';
-import '../styles/StarryBackground.css';
+import React from 'react';
+import styled, { keyframes } from 'styled-components';
+
+const twinkle = keyframes`
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+`;
+
+const Background = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000000;
+  z-index: 1;
+`;
+
+const Star = styled.div`
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: ${twinkle} ${props => props.duration}s infinite;
+  top: ${props => props.top}%;
+  left: ${props => props.left}%;
+  animation-delay: ${props => props.delay}s;
+`;
 
 const StarryBackground = () => {
-  const containerRef = useRef(null);
+  // Sukuriame 100 žvaigždžių su skirtingomis pozicijomis ir animacijos laikais
+  const stars = Array.from({ length: 100 }, (_, i) => ({
+    id: i,
+    top: Math.random() * 100,
+    left: Math.random() * 100,
+    duration: 2 + Math.random() * 3,
+    delay: Math.random() * 3
+  }));
 
-  useEffect(() => {
-    const container = containerRef.current;
-    const starCount = 150;
-
-    container.innerHTML = '';
-
-    for (let i = 0; i < starCount; i++) {
-      const star = document.createElement('div');
-      star.className = 'star';
-      
-      star.style.left = `${Math.random() * 100}%`;
-      star.style.top = `${Math.random() * 100}%`;
-      
-      const size = 1 + Math.random() * 2;
-      star.style.width = `${size}px`;
-      star.style.height = `${size}px`;
-      
-      const duration = 1 + Math.random() * 3;
-      star.style.setProperty('--twinkle-duration', `${duration}s`);
-      star.style.setProperty('--star-opacity', '1');
-      star.style.animationDelay = `${Math.random() * 3}s`;
-      
-      container.appendChild(star);
-    }
-  }, []);
-
-  return <div ref={containerRef} className="starry-background" />;
+  return (
+    <Background>
+      {stars.map(star => (
+        <Star
+          key={star.id}
+          top={star.top}
+          left={star.left}
+          duration={star.duration}
+          delay={star.delay}
+        />
+      ))}
+    </Background>
+  );
 };
 
 export default StarryBackground; 
