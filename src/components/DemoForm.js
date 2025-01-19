@@ -104,22 +104,6 @@ const DemoForm = () => {
           }}
         />
 
-
-        <textarea
-          placeholder="Leave us a message, or let us know more about yourself (Optional)"
-          style={{
-            width: '100%',
-            background: 'transparent',
-            border: 'none',
-            borderBottom: '1px solid rgba(255,255,255,0.1)',
-            padding: '15px 0',
-            color: 'white',
-            fontSize: '16px',
-            minHeight: '100px',
-            resize: 'vertical'
-          }}
-        />
-
         <textarea
           placeholder="Additional notes"
           style={{
