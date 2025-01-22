@@ -29,7 +29,7 @@ const Footer = () => {
             <div data-aos="fade-up" data-aos-delay="0">
               <h3 style={{ marginBottom: '20px', fontSize: '24px' }}>17Diamonds</h3>
               <p style={{ opacity: 0.7, lineHeight: '1.6' }}>
-                Your premier destination for electronic music and artist management.
+                Home of techno.
               </p>
               <div style={{ 
                 display: 'flex', 
