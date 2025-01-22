@@ -79,7 +79,7 @@ const Hero = () => {
               marginBottom: '60px'
             }}
           >
-            Latest Releases
+            Highlighted releases
           </h2>
           
           <div 
