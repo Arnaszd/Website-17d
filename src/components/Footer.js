@@ -34,7 +34,6 @@ const Footer = () => {
             fontSize: '16px',
             marginBottom: '30px'
           }}>
-            <p style={{ marginBottom: '8px' }}>Home of techno.</p>
             <p style={{ 
               fontSize: '14px',
               opacity: 0.9,
