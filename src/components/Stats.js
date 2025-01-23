@@ -70,8 +70,8 @@ const StatCard = ({ title, value, type }) => {
 
 const Stats = () => {
   return (
-    <section style={{
-      padding: '60px 20px',
+    <section id="achievements" style={{
+      padding: '120px 0',
       background: '#000000',
       position: 'relative',
       overflow: 'hidden'

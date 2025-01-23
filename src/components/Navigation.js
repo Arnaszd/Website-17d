@@ -1,6 +1,13 @@
 import React from 'react';
 
 const Navigation = () => {
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <>
       {/* Blur backdrop */}
@@ -50,10 +57,14 @@ const Navigation = () => {
           display: 'flex',
           gap: '30px',
         }}>
-          {['HOME', 'HIGHLIGHTS', 'ACHIEVEMENTS', 'ARTISTS', 'SOCIALS', 'PLAYLISTS', 'ABOUT', 'DEMO DROP'].map((item, index) => (
+          {['HOME','RELEASES', 'ACHIEVEMENTS', 'ARTISTS', 'SOCIAL MEDIA', 'PLAYLISTS', 'ABOUT', 'DEMO DROP'].map((item, index) => (
             <a
               key={item}
-              href={`#${item.toLowerCase()}`}
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection(item.toLowerCase().replace(/ /g, '-'));
+              }}
               className="hover-bright neon-glow"
               data-aos="fade-down"
               data-aos-delay={index * 100}
@@ -64,6 +75,7 @@ const Navigation = () => {
                 letterSpacing: '1px',
                 position: 'relative',
                 padding: '5px 0',
+                cursor: 'pointer'
               }}
             >
               {item}

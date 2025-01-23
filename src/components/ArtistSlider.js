@@ -41,7 +41,7 @@ const ArtistSlider = () => {
   };
 
   return (
-    <section style={{
+    <section id="artists" style={{
       padding: '120px 0',
       background: '#000000',
       position: 'relative',

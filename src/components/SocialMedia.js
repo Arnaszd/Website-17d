@@ -63,7 +63,7 @@ const SocialMediaLink = ({ name, color }) => {
 
 const SocialMedia = () => {
   return (
-    <section style={{
+    <section id="social-media" style={{
       padding: '100px 20px',
       background: '#000000',
       position: 'relative',

@@ -9,7 +9,7 @@ const AboutUs = () => {
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-      padding: '120px 20px',
+      padding: '120px 0',
       background: '#000000',
       position: 'relative',
       overflow: 'hidden'

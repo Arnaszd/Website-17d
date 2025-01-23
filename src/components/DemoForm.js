@@ -2,7 +2,7 @@ import React from 'react';
 
 const DemoForm = () => {
   return (
-    <div id="demo-form" style={{
+    <div id="demo-drop" style={{
       width: '100%',
       maxWidth: '800px',
       margin: '100px auto',

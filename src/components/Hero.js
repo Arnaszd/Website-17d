@@ -14,7 +14,7 @@ const Hero = () => {
 
   return (
     <>
-      <section style={{
+      <section id="home" style={{
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
@@ -61,15 +61,13 @@ const Hero = () => {
         </div>
       </section>
 
-      <section 
-        style={{
-          padding: '100px 20px',
-          background: '#000000',
-          textAlign: 'center',
-          position: 'relative',
-          overflow: 'hidden'
-        }}
-      >
+      <section id="releases" style={{
+        padding: '100px 20px',
+        background: '#000000',
+        textAlign: 'center',
+        position: 'relative',
+        overflow: 'hidden'
+      }}>
         <StarryBackground />
         <div style={{ position: 'relative', zIndex: 2 }}>
           <h2 
@@ -161,29 +159,6 @@ const Hero = () => {
               />
               <h3 style={{ fontSize: '24px', marginBottom: '5px' }}>Mr. Saxobeat</h3>
               <p style={{ opacity: '0.7' }}>Marco Carbotti</p>
-            </div>
-            <div 
-              data-aos="fade-up"
-              data-aos-delay="200"
-              style={{
-                cursor: 'pointer',
-                transition: 'transform 0.3s ease',
-                ':hover': {
-                  transform: 'translateY(-10px)'
-                }
-              }}
-            >
-              <img 
-                src="/images/Zeus.png" 
-                alt="Zeus by Venicious"
-                style={{
-                  width: '100%',
-                  borderRadius: '8px',
-                  marginBottom: '15px'
-                }}
-              />
-              <h3 style={{ fontSize: '24px', marginBottom: '5px' }}>Zeus</h3>
-              <p style={{ opacity: '0.7' }}>Venicious</p>
             </div>
           </div>
         </div>

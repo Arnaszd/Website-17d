@@ -16,8 +16,8 @@ const PlaylistSection = () => {
   ];
 
   return (
-    <section style={{
-      padding: '100px 20px',
+    <section id="playlists" style={{
+      padding: '120px 0',
       background: '#000000',
       position: 'relative',
       overflow: 'visible'
