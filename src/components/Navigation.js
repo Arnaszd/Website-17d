@@ -50,7 +50,7 @@ const Navigation = () => {
           display: 'flex',
           gap: '30px',
         }}>
-          {['HOME', 'WEEKLY RELEASES', 'PLAYLISTS', 'ARTISTS', 'BOOKING', 'EVENTS', 'ABOUT', 'DEMO DROP'].map((item, index) => (
+          {['HOME', 'HIGHLIGHTS', 'ACHIEVEMENTS', 'ARTISTS', 'SOCIALS', 'PLAYLISTS', 'ABOUT', 'DEMO DROP'].map((item, index) => (
             <a
               key={item}
               href={`#${item.toLowerCase()}`}

@@ -9,6 +9,7 @@ import PlaylistSection from './components/PlaylistSection';
 import Footer from './components/Footer';
 import StarryBackground from './components/StarryBackground';
 import DemoForm from './components/DemoForm';
+import AboutUs from './components/AboutUs';
 import './styles.css';
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <ArtistSlider />
           <SocialMedia />
           <PlaylistSection />
+          <AboutUs />
           <DemoForm />
         </main>
         <Footer />
