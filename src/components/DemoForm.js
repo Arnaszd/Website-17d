@@ -124,17 +124,7 @@ const DemoForm = () => {
           alignItems: 'center',
           gap: '10px'
         }}>
-          <input
-            type="checkbox"
-            id="privacy"
-            style={{
-              width: '20px',
-              height: '20px'
-            }}
-          />
-          <label htmlFor="privacy">
-            I agree to the <a href="/privacy" style={{ color: 'white' }}>Privacy Policy</a>
-          </label>
+         
         </div>
 
         <button
