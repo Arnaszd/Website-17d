@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import StarryBackground from './StarryBackground';
+import { Link } from 'react-router-dom';
 
 const ArtistSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -69,7 +70,7 @@ const ArtistSlider = () => {
             }}>
               Our Artists
             </h2>
-            <a href="/artists" style={{
+            <Link to="/artists" style={{
               display: 'flex',
               alignItems: 'center',
               gap: '8px',
@@ -79,7 +80,7 @@ const ArtistSlider = () => {
             }}>
               View all artists
               <span style={{ fontSize: '24px' }}>→</span>
-            </a>
+            </Link>
           </div>
 
           <div style={{
