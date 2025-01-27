@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { Suspense, lazy, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import StarryBackground from '../components/StarryBackground';
@@ -6,15 +7,9 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 const Artists = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    AOS.init({
-      duration: 1000,
-      once: true
-    });
-  }, []);
-
-  const artists = [
+  const navigate = useNavigate();
+  const [isNavigating, setIsNavigating] = useState(false);
+  const [artists, setArtists] = useState([
     {
       name: 'Discole',
       image: '/images/discole.png',
@@ -30,65 +25,39 @@ const Artists = () => {
         spotify: 'https://spotify.com',
         instagram: 'https://instagram.com'
       }
-    },
-    {
-      name: 'Cepaque',
-      image: '/images/cepaque.jpg',
-      socials: {
-        spotify: 'https://spotify.com',
-        instagram: 'https://instagram.com'
-      }
-    },
-    {
-      name: 'Cepaque',
-      image: '/images/cepaque.jpg',
-      socials: {
-        spotify: 'https://spotify.com',
-        instagram: 'https://instagram.com'
-      }
-    },
-    {
-      name: 'Cepaque',
-      image: '/images/cepaque.jpg',
-      socials: {
-        spotify: 'https://spotify.com',
-        instagram: 'https://instagram.com'
-      }
-    },
-    {
-      name: 'Cepaque',
-      image: '/images/cepaque.jpg',
-      socials: {
-        spotify: 'https://spotify.com',
-        instagram: 'https://instagram.com'
-      }
-    },
-    {
-      name: 'Cepaque',
-      image: '/images/cepaque.jpg',
-      socials: {
-        spotify: 'https://spotify.com',
-        instagram: 'https://instagram.com'
-      }
-    },
-    {
-      name: 'Cepaque',
-      image: '/images/cepaque.jpg',
-      socials: {
-        spotify: 'https://spotify.com',
-        instagram: 'https://instagram.com'
-      }
-    },
-    
-    {
-      name: 'Cepaque',
-      image: '/images/cepaque.jpg',
-      socials: {
-        spotify: 'https://spotify.com',
-        instagram: 'https://instagram.com'
-      }
     }
-  ];
+  ]);
+
+  const scrollToSection = (sectionId) => {
+    setIsNavigating(true);
+    // Preload Homepage components
+    Promise.all([
+      import('../components/Hero'),
+      import('../components/Stats'),
+      import('../components/ArtistSlider'),
+      import('../components/PlaylistSection'),
+      import('../components/StatsMap')
+    ]).then(() => {
+      navigate('/', { state: { scrollTo: sectionId } });
+    });
+  };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  }, []);
+
+  // Preload images
+  const preloadImages = () => {
+    const images = ['/images/discole.webp', '/images/cepaque.webp'];
+    images.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+  };
 
   return (
     <div style={{
@@ -101,6 +70,25 @@ const Artists = () => {
     }}>
       <StarryBackground />
       <Navigation />
+
+      {isNavigating && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: '#000000',
+          zIndex: 9999,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          color: 'white'
+        }}>
+          Navigating...
+        </div>
+      )}
+      
       <main style={{ 
         flex: '1 0 auto',
         padding: '20px',
@@ -136,8 +124,6 @@ const Artists = () => {
                   transition: 'transform 0.3s ease',
                   cursor: 'pointer'
                 }}
-                onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.02)'}
-                onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
               >
                 <div style={{
                   width: '100%',
@@ -147,6 +133,7 @@ const Artists = () => {
                 }}>
                   {artist.image && (
                     <img 
+                      loading="lazy" // Lazy loading
                       src={artist.image}
                       alt={artist.name}
                       style={{
@@ -195,10 +182,9 @@ const Artists = () => {
                           justifyContent: 'center',
                           transition: 'background 0.3s ease'
                         }}
-                        onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.2)'}
-                        onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,0.1)'}
                       >
                         <img 
+                          loading="lazy"
                           src={`/icons/${platform}.svg`}
                           alt={platform}
                           style={{
@@ -216,6 +202,7 @@ const Artists = () => {
           </div>
         </div>
       </main>
+      
       <Footer />
     </div>
   );
