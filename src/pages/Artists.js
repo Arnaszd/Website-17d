@@ -25,7 +25,88 @@ const Artists = () => {
         spotify: 'https://spotify.com',
         instagram: 'https://instagram.com'
       }
-    }
+    },
+    {
+      name: 'Cepaque',
+      image: '/images/cepaque.jpg',
+      socials: {
+        spotify: 'https://spotify.com',
+        instagram: 'https://instagram.com'
+      }
+    },
+    {
+      name: 'Cepaque',
+      image: '/images/cepaque.jpg',
+      socials: {
+        spotify: 'https://spotify.com',
+        instagram: 'https://instagram.com'
+      }
+    },
+    {
+      name: 'Cepaque',
+      image: '/images/cepaque.jpg',
+      socials: {
+        spotify: 'https://spotify.com',
+        instagram: 'https://instagram.com'
+      }
+    },
+    {
+      name: 'Cepaque',
+      image: '/images/cepaque.jpg',
+      socials: {
+        spotify: 'https://spotify.com',
+        instagram: 'https://instagram.com'
+      }
+    },
+    {
+      name: 'Cepaque',
+      image: '/images/cepaque.jpg',
+      socials: {
+        spotify: 'https://spotify.com',
+        instagram: 'https://instagram.com'
+      }
+    },
+    {
+      name: 'Cepaque',
+      image: '/images/cepaque.jpg',
+      socials: {
+        spotify: 'https://spotify.com',
+        instagram: 'https://instagram.com'
+      }
+    },
+    {
+      name: 'Cepaque',
+      image: '/images/cepaque.jpg',
+      socials: {
+        spotify: 'https://spotify.com',
+        instagram: 'https://instagram.com'
+      }
+    },
+    {
+      name: 'Cepaque',
+      image: '/images/cepaque.jpg',
+      socials: {
+        spotify: 'https://spotify.com',
+        instagram: 'https://instagram.com'
+      }
+    },
+    {
+      name: 'Cepaque',
+      image: '/images/cepaque.jpg',
+      socials: {
+        spotify: 'https://spotify.com',
+        instagram: 'https://instagram.com'
+      }
+    },
+    {
+      name: 'Cepaque',
+      image: '/images/cepaque.jpg',
+      socials: {
+        spotify: 'https://spotify.com',
+        instagram: 'https://instagram.com'
+      }
+    },
+    
   ]);
 
   const scrollToSection = (sectionId) => {
