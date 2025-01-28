@@ -19,16 +19,15 @@ try {
 
     $data = json_decode(file_get_contents("php://input"), true);
     
-    $stmt = $conn->prepare("INSERT INTO form_submissions (name, email, song_name, song_link, notes, privacy) 
-                           VALUES (:name, :email, :song_name, :song_link, :notes, :privacy)");
+    $stmt = $conn->prepare("INSERT INTO form_submissions (name, email, song_name, song_link, notes) 
+                           VALUES (:name, :email, :song_name, :song_link, :notes )");
     
     $stmt->execute([
         ':name' => $data['name'],
         ':email' => $data['email'],
         ':song_name' => $data['songName'],
         ':song_link' => $data['songLink'],
-        ':notes' => $data['notes'],
-        ':privacy' => $data['privacy'] ? 1 : 0
+        ':notes' => $data['notes']
     ]);
 
     echo json_encode(["success" => true, "message" => "Form submitted successfully"]);
