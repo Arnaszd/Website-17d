@@ -1,6 +1,55 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const DemoForm = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    songName: '',
+    songLink: '',
+    notes: '',
+    privacy: false
+  });
+  const [status, setStatus] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('http://localhost/Website-17d/src/backend/submit_form.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+      
+      const data = await response.json();
+      
+      if (data.success) {
+        setStatus('Form submitted successfully!');
+        setFormData({
+          name: '',
+          email: '',
+          songName: '',
+          songLink: '',
+          notes: '',
+          privacy: false
+        });
+      } else {
+        setStatus('Error submitting form. Please try again.');
+      }
+    } catch (error) {
+      setStatus('Error submitting form. Please try again.');
+    }
+  };
+
+  const handleChange = (e) => {
+    const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+    setFormData({
+      ...formData,
+      [e.target.name]: value
+    });
+  };
+
   return (
     <div id="demo-drop" style={{
       width: '100%',
@@ -43,14 +92,18 @@ const DemoForm = () => {
       </p>
 
       {/* Form */}
-      <form style={{
+      <form onSubmit={handleSubmit} style={{
         display: 'flex',
         flexDirection: 'column',
         gap: '30px'
       }}>
         <input
           type="text"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
           placeholder="Your Name"
+          required
           style={{
             width: '100%',
             background: 'transparent',
@@ -64,7 +117,11 @@ const DemoForm = () => {
 
         <input
           type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
           placeholder="Your Email"
+          required
           style={{
             width: '100%',
             background: 'transparent',
@@ -78,7 +135,11 @@ const DemoForm = () => {
 
         <input
           type="text"
+          name="songName"
+          value={formData.songName}
+          onChange={handleChange}
           placeholder="Name of song"
+          required
           style={{
             width: '100%',
             background: 'transparent',
@@ -92,7 +153,11 @@ const DemoForm = () => {
 
         <input
           type="text"
+          name="songLink"
+          value={formData.songLink}
+          onChange={handleChange}
           placeholder="Song link (Soundcloud, Dropbox, etc)"
+          required
           style={{
             width: '100%',
             background: 'transparent',
@@ -105,6 +170,9 @@ const DemoForm = () => {
         />
 
         <textarea
+          name="notes"
+          value={formData.notes}
+          onChange={handleChange}
           placeholder="Additional notes"
           style={{
             width: '100%',
@@ -118,15 +186,6 @@ const DemoForm = () => {
             resize: 'vertical'
           }}
         />
-
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '10px'
-        }}>
-         
-        </div>
-
         <button
           type="submit"
           style={{
@@ -141,6 +200,16 @@ const DemoForm = () => {
         >
           Submit
         </button>
+
+        {status && (
+          <p style={{
+            textAlign: 'center',
+            color: status.includes('Error') ? '#ff4444' : '#44ff44',
+            marginTop: '20px'
+          }}>
+            {status}
+          </p>
+        )}
       </form>
     </div>
   );
