@@ -9,7 +9,7 @@ const DemoForm = () => {
     notes: '',
     privacy: false
   });
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState({ message: '', isError: false });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,7 +25,7 @@ const DemoForm = () => {
       const data = await response.json();
       
       if (data.success) {
-        setStatus('Form submitted successfully!');
+        setStatus({ message: 'Form submitted successfully!', isError: false });
         setFormData({
           name: '',
           email: '',
@@ -35,10 +35,16 @@ const DemoForm = () => {
           privacy: false
         });
       } else {
-        setStatus('Error submitting form. Please try again.');
+        setStatus({ 
+          message: data.message || 'Error submitting form. Please try again.', 
+          isError: true 
+        });
       }
     } catch (error) {
-      setStatus('Error submitting form. Please try again.');
+      setStatus({ 
+        message: 'Error submitting form. Please try again.', 
+        isError: true 
+      });
     }
   };
 
@@ -201,13 +207,13 @@ const DemoForm = () => {
           Submit
         </button>
 
-        {status && (
+        {status.message && (
           <p style={{
             textAlign: 'center',
-            color: status.includes('Error') ? '#ff4444' : '#44ff44',
+            color: status.isError ? '#ff0000' : '#4CAF50',
             marginTop: '20px'
           }}>
-            {status}
+            {status.message}
           </p>
         )}
       </form>

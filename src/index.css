@@ -9,7 +9,7 @@
 
 .flicker-text {
   color: #808080;
-  animation: flicker 4s linear infinite;
+  animation: flicker 1ms linear infinite;
 }
 
 .stat-card {
