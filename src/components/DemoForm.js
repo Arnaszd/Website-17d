@@ -67,7 +67,8 @@ const DemoForm = () => {
           email: formData.email,
           song_name: formData.songName,
           song_link: formData.songLink,
-          notes: formData.notes
+          instagram: formData.instagram || '',
+          notes: formData.notes || ''
         });
 
       if (submitError) throw submitError;
@@ -243,8 +244,7 @@ const DemoForm = () => {
           name="instagram"
           value={formData.instagram}
           onChange={handleChange}
-          placeholder="Instagram (preferable contacting media)"
-          autoComplete="new-password"
+          placeholder="Your Instagram"
           style={{
             width: '100%',
             background: 'transparent',
