@@ -8,6 +8,7 @@ import 'aos/dist/aos.css';
 import Home from './pages/Home';
 import Artists from './pages/Artists';
 import AdminPanel from './pages/AdminPanel';
+import Login from './pages/Login';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/artists" element={<Artists />} />
         <Route path="/admin" element={<AdminPanel />} />
+        <Route path="/login" element={<Login />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>

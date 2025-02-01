@@ -7,6 +7,7 @@ const DemoForm = () => {
     email: '',
     songName: '',
     songLink: '',
+    instagram: '',
     notes: '',
     privacy: false
   });
@@ -68,6 +69,7 @@ const DemoForm = () => {
         email: '',
         songName: '',
         songLink: '',
+        instagram: '',
         notes: '',
         privacy: false
       });
@@ -196,6 +198,23 @@ const DemoForm = () => {
           onChange={handleChange}
           placeholder="Song link (Soundcloud, Dropbox, etc)"
           required
+          style={{
+            width: '100%',
+            background: 'transparent',
+            border: 'none',
+            borderBottom: '1px solid rgba(255,255,255,0.1)',
+            padding: '15px 0',
+            color: 'white',
+            fontSize: '16px'
+          }}
+        />
+
+        <input
+          type="text"
+          name="instagram"
+          value={formData.instagram}
+          onChange={handleChange}
+          placeholder="Instagram (preferable contacting media)"
           style={{
             width: '100%',
             background: 'transparent',
