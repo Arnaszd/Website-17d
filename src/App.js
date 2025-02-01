@@ -9,7 +9,11 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Artists from './pages/Artists';
 import AdminPanel from './pages/AdminPanel';
+<<<<<<< HEAD
 import ProtectedRoute from './components/ProtectedRoute';
+=======
+import Login from './pages/Login';
+>>>>>>> 56d635fce656dde943b914f3508a42b4887e1621
 
 function App() {
   return (
@@ -17,6 +21,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/artists" element={<Artists />} />
+<<<<<<< HEAD
         <Route path="/login" element={<Login />} />
         <Route 
           path="/admin" 
@@ -26,6 +31,10 @@ function App() {
             </ProtectedRoute>
           } 
         />
+=======
+        <Route path="/admin" element={<AdminPanel />} />
+        <Route path="/login" element={<Login />} />
+>>>>>>> 56d635fce656dde943b914f3508a42b4887e1621
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>

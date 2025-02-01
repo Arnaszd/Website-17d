@@ -1,15 +1,30 @@
 import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import supabase from '../lib/supabaseClient';
 import { useNavigate } from 'react-router-dom';
 
 const AdminPanel = () => {
   const [submissions, setSubmissions] = useState([]);
   const [loading, setLoading] = useState(true);
+<<<<<<< HEAD
+=======
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+>>>>>>> 56d635fce656dde943b914f3508a42b4887e1621
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchSubmissions();
+    checkAuth();
   }, []);
+
+  const checkAuth = async () => {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) {
+      navigate('/login');
+    } else {
+      setIsAuthenticated(true);
+      fetchSubmissions();
+    }
+  };
 
   const fetchSubmissions = async () => {
     try {
@@ -28,6 +43,7 @@ const AdminPanel = () => {
   };
 
   const handleLogout = async () => {
+<<<<<<< HEAD
     await supabase.auth.signOut();
     navigate('/');
   };
@@ -70,6 +86,75 @@ const AdminPanel = () => {
         </div>
         <h1 style={{ marginBottom: '30px' }}>Admin Panel</h1>
         
+=======
+    try {
+      await supabase.auth.signOut();
+      navigate('/login');
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
+  };
+
+  return (
+    <>
+      {/* Navbar */}
+      <nav style={{
+        background: 'rgba(0, 0, 0, 0.8)',
+        backdropFilter: 'blur(10px)',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+        padding: '20px 0',
+        position: 'sticky',
+        top: 0,
+        zIndex: 1000
+      }}>
+        <div style={{
+          maxWidth: '1200px',
+          margin: '0 auto',
+          padding: '0 20px',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center'
+        }}>
+          <Link to="/" style={{
+            color: 'white',
+            textDecoration: 'none',
+            fontSize: '20px',
+            fontWeight: 'bold'
+          }}>
+            17 Diamonds
+          </Link>
+          <h1 style={{
+            color: 'white',
+            margin: 0,
+            fontSize: '24px'
+          }}>
+            Admin Panel
+          </h1>
+          <div style={{ width: '100px' }}></div> {/* Spacer for alignment */}
+          <button
+            onClick={handleLogout}
+            style={{
+              background: 'transparent',
+              border: '1px solid rgba(255, 255, 255, 0.3)',
+              color: 'white',
+              padding: '8px 16px',
+              borderRadius: '4px',
+              cursor: 'pointer'
+            }}
+          >
+            Logout
+          </button>
+        </div>
+      </nav>
+
+      {/* Content */}
+      <div style={{
+        padding: '40px',
+        maxWidth: '1200px',
+        margin: '0 auto',
+        color: 'white'
+      }}>
+>>>>>>> 56d635fce656dde943b914f3508a42b4887e1621
         {loading ? (
           <p>Loading submissions...</p>
         ) : (
@@ -85,6 +170,10 @@ const AdminPanel = () => {
                   <th style={tableHeaderStyle}>Date</th>
                   <th style={tableHeaderStyle}>Name</th>
                   <th style={tableHeaderStyle}>Email</th>
+<<<<<<< HEAD
+=======
+                  <th style={tableHeaderStyle}>Instagram</th>
+>>>>>>> 56d635fce656dde943b914f3508a42b4887e1621
                   <th style={tableHeaderStyle}>Song Name</th>
                   <th style={tableHeaderStyle}>Song Link</th>
                   <th style={tableHeaderStyle}>Notes</th>
@@ -98,6 +187,10 @@ const AdminPanel = () => {
                     </td>
                     <td style={tableCellStyle}>{submission.name}</td>
                     <td style={tableCellStyle}>{submission.email}</td>
+<<<<<<< HEAD
+=======
+                    <td style={tableCellStyle}>{submission.instagram}</td>
+>>>>>>> 56d635fce656dde943b914f3508a42b4887e1621
                     <td style={tableCellStyle}>{submission.song_name}</td>
                     <td style={tableCellStyle}>
                       <a href={submission.song_link} 
@@ -115,7 +208,11 @@ const AdminPanel = () => {
           </div>
         )}
       </div>
+<<<<<<< HEAD
     </div>
+=======
+    </>
+>>>>>>> 56d635fce656dde943b914f3508a42b4887e1621
   );
 };
 

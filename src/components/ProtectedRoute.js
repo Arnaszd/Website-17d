@@ -25,7 +25,11 @@ const ProtectedRoute = ({ children }) => {
   };
 
   if (loading) {
+<<<<<<< HEAD
     return <div style={{ color: 'white', padding: '20px' }}>Kraunama...</div>;
+=======
+    return <div style={{ color: 'white', padding: '20px' }}>Loading...</div>;
+>>>>>>> 56d635fce656dde943b914f3508a42b4887e1621
   }
 
   return children;
