@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import supabase from '../lib/supabaseClient';
 
 const DemoForm = () => {
@@ -12,6 +12,15 @@ const DemoForm = () => {
     privacy: false
   });
   const [status, setStatus] = useState({ message: '', isError: false });
+
+  useEffect(() => {
+    localStorage.clear();
+    sessionStorage.clear();
+    
+    document.cookie.split(";").forEach(function(c) { 
+      document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+    });
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -63,7 +72,6 @@ const DemoForm = () => {
 
       if (submitError) throw submitError;
 
-      setStatus({ message: 'Form submitted successfully!', isError: false });
       setFormData({
         name: '',
         email: '',
@@ -73,6 +81,10 @@ const DemoForm = () => {
         notes: '',
         privacy: false
       });
+      
+      e.target.reset();
+      
+      setStatus({ message: 'Form submitted successfully!', isError: false });
     } catch (error) {
       console.error('Error:', error);
       setStatus({ 
@@ -132,11 +144,26 @@ const DemoForm = () => {
       </p>
 
       {/* Form */}
-      <form onSubmit={handleSubmit} style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '30px'
-      }}>
+      <form 
+        onSubmit={handleSubmit} 
+        style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}
+        autoComplete="off"
+        spellCheck="false"
+        data-form-type="other"
+      >
+        <style>
+          {`
+            input:-webkit-autofill,
+            input:-webkit-autofill:hover,
+            input:-webkit-autofill:focus,
+            input:-webkit-autofill:active {
+              -webkit-box-shadow: 0 0 0 30px black inset !important;
+              -webkit-text-fill-color: white !important;
+              transition: background-color 5000s ease-in-out 0s;
+            }
+          `}
+        </style>
+
         <input
           type="text"
           name="name"
@@ -156,7 +183,7 @@ const DemoForm = () => {
         />
 
         <input
-          type="email"
+          type="text"
           name="email"
           value={formData.email}
           onChange={handleChange}
@@ -180,6 +207,7 @@ const DemoForm = () => {
           onChange={handleChange}
           placeholder="Name of song"
           required
+          autoComplete="new-password"
           style={{
             width: '100%',
             background: 'transparent',
@@ -198,6 +226,7 @@ const DemoForm = () => {
           onChange={handleChange}
           placeholder="Song link (Soundcloud, Dropbox, etc)"
           required
+          autoComplete="new-password"
           style={{
             width: '100%',
             background: 'transparent',
@@ -215,6 +244,7 @@ const DemoForm = () => {
           value={formData.instagram}
           onChange={handleChange}
           placeholder="Instagram (preferable contacting media)"
+          autoComplete="new-password"
           style={{
             width: '100%',
             background: 'transparent',

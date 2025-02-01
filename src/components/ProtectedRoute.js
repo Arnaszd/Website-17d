@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Navigate } from 'react-router-dom';
 import supabase from '../lib/supabaseClient';
 
 const ProtectedRoute = ({ children }) => {
-  const navigate = useNavigate();
+  const [session, setSession] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -13,23 +13,20 @@ const ProtectedRoute = ({ children }) => {
   const checkUser = async () => {
     try {
       const { data: { session } } = await supabase.auth.getSession();
-      if (!session) {
-        navigate('/login');
-      }
+      setSession(session);
     } catch (error) {
-      console.error('Error:', error);
-      navigate('/login');
+      console.error('Error checking auth:', error);
     } finally {
       setLoading(false);
     }
   };
 
   if (loading) {
-<<<<<<< HEAD
     return <div style={{ color: 'white', padding: '20px' }}>Kraunama...</div>;
-=======
-    return <div style={{ color: 'white', padding: '20px' }}>Loading...</div>;
->>>>>>> 56d635fce656dde943b914f3508a42b4887e1621
+  }
+
+  if (!session) {
+    return <Navigate to="/login" />;
   }
 
   return children;
