@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import supabase from '../lib/supabaseClient';
 
 const DemoForm = () => {
   const [formData, setFormData] = useState({
@@ -14,33 +15,64 @@ const DemoForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost/Website-17d/src/backend/submit_form.php', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData)
-      });
+      // Get user's IP address
+      const ipResponse = await fetch('https://api.ipify.org?format=json');
+      const { ip } = await ipResponse.json();
       
-      const data = await response.json();
-      
-      if (data.success) {
-        setStatus({ message: 'Form submitted successfully!', isError: false });
-        setFormData({
-          name: '',
-          email: '',
-          songName: '',
-          songLink: '',
-          notes: '',
-          privacy: false
+      // Check submission count for today
+      const today = new Date().toISOString().split('T')[0];
+      const { data: submissions } = await supabase
+        .from('form_submissions_log')
+        .select('submission_count')
+        .eq('ip_address', ip)
+        .eq('submission_date', today)
+        .single();
+
+      if (submissions && submissions.submission_count >= 3) {
+        setStatus({
+          message: 'Daily submission limit (3) reached. Please try again tomorrow.',
+          isError: true
         });
-      } else {
-        setStatus({ 
-          message: data.message || 'Error submitting form. Please try again.', 
-          isError: true 
-        });
+        return;
       }
+
+      // Insert or update submission log
+      const { error: logError } = await supabase
+        .from('form_submissions_log')
+        .upsert({
+          ip_address: ip,
+          submission_date: today,
+          submission_count: submissions ? submissions.submission_count + 1 : 1
+        }, {
+          onConflict: 'ip_address,submission_date'
+        });
+
+      if (logError) throw logError;
+
+      // Insert form submission
+      const { error: submitError } = await supabase
+        .from('form_submissions')
+        .insert({
+          name: formData.name,
+          email: formData.email,
+          song_name: formData.songName,
+          song_link: formData.songLink,
+          notes: formData.notes
+        });
+
+      if (submitError) throw submitError;
+
+      setStatus({ message: 'Form submitted successfully!', isError: false });
+      setFormData({
+        name: '',
+        email: '',
+        songName: '',
+        songLink: '',
+        notes: '',
+        privacy: false
+      });
     } catch (error) {
+      console.error('Error:', error);
       setStatus({ 
         message: 'Error submitting form. Please try again.', 
         isError: true 

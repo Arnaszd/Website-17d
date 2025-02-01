@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@supabase/supabase-js": "^2.48.1",
     "@testing-library/react": "^13.4.0",
     "aos": "^2.3.4",
     "d3-scale": "^4.0.2",
