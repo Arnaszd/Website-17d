@@ -6,8 +6,10 @@ import 'aos/dist/aos.css';
 
 // Importuojame komponetus tiesiogiai (be lazy loading kol kas)
 import Home from './pages/Home';
+import Login from './pages/Login';
 import Artists from './pages/Artists';
 import AdminPanel from './pages/AdminPanel';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
@@ -15,7 +17,15 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/artists" element={<Artists />} />
-        <Route path="/admin" element={<AdminPanel />} />
+        <Route path="/login" element={<Login />} />
+        <Route 
+          path="/admin" 
+          element={
+            <ProtectedRoute>
+              <AdminPanel />
+            </ProtectedRoute>
+          } 
+        />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
