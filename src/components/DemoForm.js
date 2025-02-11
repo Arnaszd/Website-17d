@@ -1,6 +1,108 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import supabase from '../lib/supabaseClient';
 
 const DemoForm = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    songName: '',
+    songLink: '',
+    instagram: '',
+    notes: '',
+    privacy: false
+  });
+  const [status, setStatus] = useState({ message: '', isError: false });
+
+  useEffect(() => {
+    localStorage.clear();
+    sessionStorage.clear();
+    
+    document.cookie.split(";").forEach(function(c) { 
+      document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+    });
+  }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      // Get user's IP address
+      const ipResponse = await fetch('https://api.ipify.org?format=json');
+      const { ip } = await ipResponse.json();
+      
+      // Check submission count for today
+      const today = new Date().toISOString().split('T')[0];
+      const { data: submissions } = await supabase
+        .from('form_submissions_log')
+        .select('submission_count')
+        .eq('ip_address', ip)
+        .eq('submission_date', today)
+        .single();
+
+      if (submissions && submissions.submission_count >= 3) {
+        setStatus({
+          message: 'Daily submission limit (3) reached. Please try again tomorrow.',
+          isError: true
+        });
+        return;
+      }
+
+      // Insert or update submission log
+      const { error: logError } = await supabase
+        .from('form_submissions_log')
+        .upsert({
+          ip_address: ip,
+          submission_date: today,
+          submission_count: submissions ? submissions.submission_count + 1 : 1
+        }, {
+          onConflict: 'ip_address,submission_date'
+        });
+
+      if (logError) throw logError;
+
+      // Insert form submission
+      const { error: submitError } = await supabase
+        .from('form_submissions')
+        .insert({
+          name: formData.name,
+          email: formData.email,
+          song_name: formData.songName,
+          song_link: formData.songLink,
+          instagram: formData.instagram || '',
+          notes: formData.notes || ''
+        });
+
+      if (submitError) throw submitError;
+
+      setFormData({
+        name: '',
+        email: '',
+        songName: '',
+        songLink: '',
+        instagram: '',
+        notes: '',
+        privacy: false
+      });
+      
+      e.target.reset();
+      
+      setStatus({ message: 'Form submitted successfully!', isError: false });
+    } catch (error) {
+      console.error('Error:', error);
+      setStatus({ 
+        message: 'Error submitting form. Please try again.', 
+        isError: true 
+      });
+    }
+  };
+
+  const handleChange = (e) => {
+    const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+    setFormData({
+      ...formData,
+      [e.target.name]: value
+    });
+  };
+
   return (
     <div id="demo-drop" style={{
       width: '100%',
@@ -43,14 +145,33 @@ const DemoForm = () => {
       </p>
 
       {/* Form */}
-      <form style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '30px'
-      }}>
+      <form 
+        onSubmit={handleSubmit} 
+        style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}
+        autoComplete="off"
+        spellCheck="false"
+        data-form-type="other"
+      >
+        <style>
+          {`
+            input:-webkit-autofill,
+            input:-webkit-autofill:hover,
+            input:-webkit-autofill:focus,
+            input:-webkit-autofill:active {
+              -webkit-box-shadow: 0 0 0 30px black inset !important;
+              -webkit-text-fill-color: white !important;
+              transition: background-color 5000s ease-in-out 0s;
+            }
+          `}
+        </style>
+
         <input
           type="text"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
           placeholder="Your Name"
+          required
           style={{
             width: '100%',
             background: 'transparent',
@@ -63,8 +184,12 @@ const DemoForm = () => {
         />
 
         <input
-          type="email"
+          type="text"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
           placeholder="Your Email"
+          required
           style={{
             width: '100%',
             background: 'transparent',
@@ -78,7 +203,12 @@ const DemoForm = () => {
 
         <input
           type="text"
+          name="songName"
+          value={formData.songName}
+          onChange={handleChange}
           placeholder="Name of song"
+          required
+          autoComplete="new-password"
           style={{
             width: '100%',
             background: 'transparent',
@@ -92,7 +222,29 @@ const DemoForm = () => {
 
         <input
           type="text"
+          name="songLink"
+          value={formData.songLink}
+          onChange={handleChange}
           placeholder="Song link (Soundcloud, Dropbox, etc)"
+          required
+          autoComplete="new-password"
+          style={{
+            width: '100%',
+            background: 'transparent',
+            border: 'none',
+            borderBottom: '1px solid rgba(255,255,255,0.1)',
+            padding: '15px 0',
+            color: 'white',
+            fontSize: '16px'
+          }}
+        />
+
+        <input
+          type="text"
+          name="instagram"
+          value={formData.instagram}
+          onChange={handleChange}
+          placeholder="Your Instagram"
           style={{
             width: '100%',
             background: 'transparent',
@@ -105,6 +257,9 @@ const DemoForm = () => {
         />
 
         <textarea
+          name="notes"
+          value={formData.notes}
+          onChange={handleChange}
           placeholder="Additional notes"
           style={{
             width: '100%',
@@ -118,25 +273,6 @@ const DemoForm = () => {
             resize: 'vertical'
           }}
         />
-
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '10px'
-        }}>
-          <input
-            type="checkbox"
-            id="privacy"
-            style={{
-              width: '20px',
-              height: '20px'
-            }}
-          />
-          <label htmlFor="privacy">
-            I agree to the <a href="/privacy" style={{ color: 'white' }}>Privacy Policy</a>
-          </label>
-        </div>
-
         <button
           type="submit"
           style={{
@@ -151,6 +287,16 @@ const DemoForm = () => {
         >
           Submit
         </button>
+
+        {status.message && (
+          <p style={{
+            textAlign: 'center',
+            color: status.isError ? '#ff0000' : '#4CAF50',
+            marginTop: '20px'
+          }}>
+            {status.message}
+          </p>
+        )}
       </form>
     </div>
   );

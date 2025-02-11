@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import StarryBackground from './StarryBackground';
 
 const ArtistSlider = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  const artists = [
+  const navigate = useNavigate();
+  const [artists, setArtists] = useState([
     {
       name: 'Discole',
       image: '/images/discole.png',
@@ -14,31 +14,23 @@ const ArtistSlider = () => {
       }
     },
     {
-      name: 'Artist2',
-      image: '',
+      name: 'Cepaque',
+      image: '/images/cepaque.jpg',
       socials: {
-        spotify: 'https://spotify.com/artist',
-        instagram: 'https://instagram.com/artist'
+        spotify: 'https://spotify.com',
+        instagram: 'https://instagram.com'
       }
     },
     {
-      name: 'Artist3',
-      image: '',
+      name: 'Discole',
+      image: '/images/discole.png',
       socials: {
-        spotify: 'https://spotify.com/artist',
-        instagram: 'https://instagram.com/artist'
+        spotify: 'https://open.spotify.com/artist/6VVsZ70zgwx9zx44BKLZle?si=A6yuuBFTS5e9VdDFiF0R-w',
+        instagram: 'https://www.instagram.com/discole.music/'
       }
     },
-    // Galima pridėti daugiau artistų
-  ];
-
-  const handlePrev = () => {
-    setCurrentSlide(prev => prev === 0 ? 2 : prev - 1);
-  };
-
-  const handleNext = () => {
-    setCurrentSlide(prev => prev === 2 ? 0 : prev + 1);
-  };
+    
+  ]);
 
   return (
     <section id="artists" style={{
@@ -69,210 +61,115 @@ const ArtistSlider = () => {
             }}>
               Our Artists
             </h2>
-            <a href="/artists" style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              color: 'white',
-              textDecoration: 'none',
-              fontSize: '18px'
-            }}>
+            <button
+              onClick={() => navigate('/artists')}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                color: 'white',
+                background: 'none',
+                border: 'none',
+                fontSize: '18px',
+                cursor: 'pointer'
+              }}
+            >
               View all artists
               <span style={{ fontSize: '24px' }}>→</span>
-            </a>
+            </button>
           </div>
 
           <div style={{
-            position: 'relative',
-            overflow: 'hidden',
-            height: '600px'
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: '20px',
+            padding: '0 20px'
           }}>
-            <div style={{
-              display: 'flex',
-              transform: `translateX(-${currentSlide * 100}%)`,
-              transition: 'transform 0.5s ease',
-              height: '100%'
-            }}>
-              {artists.map((artist, index) => (
-                <div
-                  key={index}
-                  style={{
-                    minWidth: '100%',
-                    height: '100%',
-                    position: 'relative',
-                    background: 'rgba(255,255,255,0.05)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    transition: 'transform 0.3s ease'
-                  }}
-                  onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
-                  onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-                >
-                  {artist.image ? (
-                    <div
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        position: 'relative'
-                      }}
-                    >
-                      <div
-                        data-aos="fade"
-                        data-aos-duration="1500"
-                        style={{
-                          width: '100%',
-                          height: '100%',
-                          position: 'absolute',
-                          background: `url(${artist.image})`,
-                          backgroundSize: 'cover',
-                          backgroundPosition: 'center',
-                          filter: 'blur(5px)',
-                          transform: 'scale(1.1)',
-                          opacity: 0.3
-                        }}
-                      />
-                      <img 
-                        data-aos="zoom-in"
-                        data-aos-duration="1200"
-                        src={artist.image}
-                        alt={artist.name}
-                        style={{
-                          width: '1000px',
-                          height: '1000px',
-                          objectFit: 'cover',
-                          position: 'absolute',
-                          top: '50%',
-                          left: '50%',
-                          transform: 'translate(-50%, -50%)',
-                          zIndex: 1
-                        }}
-                      />
-                    </div>
-                  ) : (
-                    <svg 
-                      width="200" 
-                      height="200" 
-                      viewBox="0 0 24 24" 
-                      fill="rgba(255,255,255,0.5)"
+            {artists.map((artist, index) => (
+              <div 
+                key={index}
+                style={{
+                  background: 'rgba(255,255,255,0.05)',
+                  borderRadius: '8px',
+                  overflow: 'hidden',
+                  transition: 'transform 0.3s ease',
+                  cursor: 'pointer'
+                }}
+              >
+                <div style={{
+                  width: '100%',
+                  paddingTop: '100%',
+                  position: 'relative',
+                  background: '#1a1a1a'
+                }}>
+                  {artist.image && (
+                    <img 
+                      loading="lazy"
+                      src={artist.image}
+                      alt={artist.name}
                       style={{
                         position: 'absolute',
-                        top: '50%',
-                        left: '50%',
-                        transform: 'translate(-50%, -50%)'
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover'
                       }}
-                    >
-                      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                    </svg>
+                    />
                   )}
-                  <div style={{
-                    position: 'absolute',
-                    bottom: '40px',
-                    left: '40px',
-                    zIndex: 2
+                </div>
+                <div style={{ 
+                  padding: '15px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '8px'
+                }}>
+                  <h2 style={{ 
+                    fontSize: '20px',
+                    textAlign: 'center',
+                    fontWeight: '500'
                   }}>
-                    <div style={{
-                      display: 'flex',
-                      gap: '10px',
-                      marginBottom: '20px'
-                    }}>
-                      <a 
-                        href={artist.socials.spotify} 
+                    {artist.name}
+                  </h2>
+                  <div style={{
+                    display: 'flex',
+                    gap: '12px',
+                    justifyContent: 'center'
+                  }}>
+                    {Object.entries(artist.socials).map(([platform, url]) => (
+                      <a
+                        key={platform}
+                        href={url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="spotify-icon"
                         style={{
-                          width: '40px',
-                          height: '40px',
+                          width: '35px',
+                          height: '35px',
                           borderRadius: '50%',
                           background: 'rgba(255,255,255,0.1)',
                           display: 'flex',
                           alignItems: 'center',
-                          justifyContent: 'center'
+                          justifyContent: 'center',
+                          transition: 'background 0.3s ease'
                         }}
                       >
-                        <img src="/icons/spotify.svg" alt="Spotify" style={{ width: '20px', height: '20px', filter: 'brightness(0) invert(1)' }} />
+                        <img 
+                          loading="lazy"
+                          src={`/icons/${platform}.svg`}
+                          alt={platform}
+                          style={{
+                            width: '18px',
+                            height: '18px',
+                            filter: 'brightness(0) invert(1)'
+                          }}
+                        />
                       </a>
-                      <a 
-                        href={artist.socials.instagram} 
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="instagram-icon"
-                        style={{
-                          width: '40px',
-                          height: '40px',
-                          borderRadius: '50%',
-                          background: 'rgba(255,255,255,0.1)',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center'
-                        }}
-                      >
-                        <img src="/icons/instagram.svg" alt="Instagram" style={{ width: '20px', height: '20px', filter: 'brightness(0) invert(1)' }} />
-                      </a>
-                    </div>
-                    <h3 style={{
-                      fontSize: '48px',
-                      fontWeight: 'bold',
-                      margin: 0
-                    }}>
-                      {artist.name}
-                    </h3>
+                    ))}
                   </div>
                 </div>
-              ))}
-            </div>
-
-            <button
-              onClick={handlePrev}
-              style={{
-                position: 'absolute',
-                left: '20px',
-                top: '50%',
-                transform: 'translateY(-50%)',
-                background: 'rgba(255,255,255,0.1)',
-                border: 'none',
-                borderRadius: '50%',
-                width: '50px',
-                height: '50px',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '24px',
-                color: 'white',
-                transition: 'background 0.3s ease'
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.2)'}
-              onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.1)'}
-            >
-              ←
-            </button>
-            <button
-              onClick={handleNext}
-              style={{
-                position: 'absolute',
-                right: '20px',
-                top: '50%',
-                transform: 'translateY(-50%)',
-                background: 'rgba(255,255,255,0.1)',
-                border: 'none',
-                borderRadius: '50%',
-                width: '50px',
-                height: '50px',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '24px',
-                color: 'white',
-                transition: 'background 0.3s ease'
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.2)'}
-              onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.1)'}
-            >
-              →
-            </button>
+              </div>
+            ))}
           </div>
         </div>
       </div>

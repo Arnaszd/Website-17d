@@ -102,16 +102,19 @@ const Hero = () => {
               }}
             >
               <img 
-                src="/images/OutOfMyHead.jpg" 
+                src="/images/supermassive.jpg" 
                 alt="Supermassive Black Hole by Seeko"
+                className="hover-scale"
                 style={{
                   width: '100%',
                   borderRadius: '8px',
-                  marginBottom: '15px'
+                  marginBottom: '15px',
+                  cursor: 'pointer'
                 }}
+                onClick={() => window.open('https://17diamonds.lnk.to/SupermassiveBlackHole', '_blank')}
               />
-              <h3 style={{ fontSize: '24px', marginBottom: '5px' }}>Samarth goel</h3>
-              <p style={{ opacity: '0.7' }}>Out Of My Head</p>
+              <h3 style={{ fontSize: '24px', marginBottom: '5px' }}>Supermassive Black Hole</h3>
+              <p style={{ opacity: '0.7' }}>Seeko</p>
             </div>
 
             <div 
@@ -128,11 +131,14 @@ const Hero = () => {
               <img 
                 src="/images/illusion.png" 
                 alt="Illusion by El Fuego"
+                className="hover-scale"
                 style={{
                   width: '100%',
                   borderRadius: '8px',
-                  marginBottom: '15px'
+                  marginBottom: '15px',
+                  cursor: 'pointer'
                 }}
+                onClick={() => window.open('https://17diamonds.lnk.to/Illusion', '_blank')}
               />
               <h3 style={{ fontSize: '24px', marginBottom: '5px' }}>Illusion</h3>
               <p style={{ opacity: '0.7' }}>El Fuego Mus!c</p>
@@ -147,10 +153,12 @@ const Hero = () => {
                   transform: 'translateY(-10px)'
                 }
               }}
+              onClick={() => window.open('https://17diamonds.lnk.to/MrSaxobeat', '_blank')}
             >
               <img 
                 src="/images/Saxobeat.jpg" 
                 alt="Mr Saxobeat by Marco Carbotti"
+                className="hover-scale"
                 style={{
                   width: '100%',
                   borderRadius: '8px',

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import StarryBackground from './StarryBackground';
 
 const Footer = () => {
@@ -92,6 +93,19 @@ const Footer = () => {
             © {new Date().getFullYear()} 17Diamonds. All rights reserved. 
             <br></br>info@17diamonds.com
           </p>
+          <Link 
+            to="/admin" 
+            style={{
+              color: 'rgba(255, 255, 255, 0.4)',
+              fontSize: '12px',
+              textDecoration: 'none',
+              transition: 'color 0.3s ease'
+            }}
+            onMouseOver={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.7)'}
+            onMouseOut={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.4)'}
+          >
+            Admin Panel
+          </Link>
         </div>
       </div>
     </footer>

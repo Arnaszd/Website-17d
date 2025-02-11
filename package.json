@@ -13,11 +13,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@supabase/supabase-js": "^2.48.1",
     "@testing-library/react": "^13.4.0",
     "aos": "^2.3.4",
     "d3-scale": "^4.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.28.2",
     "react-scripts": "^5.0.1",
     "react-simple-maps": "^3.0.0",
     "styled-components": "^6.1.14",
@@ -34,5 +36,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }
