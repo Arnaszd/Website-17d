@@ -14,7 +14,7 @@ const StatCard = ({ title, value, type }) => {
       position: 'relative',
       overflow: 'hidden',
       transition: 'transform 0.3s ease',
-      cursor: 'pointer',
+      cursor: 'default',
       ':hover': {
         transform: 'translateY(-5px)'
       }

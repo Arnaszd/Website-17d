@@ -6,12 +6,12 @@ const PlaylistSection = () => {
     { 
       name: '2025 TIKTOK TECHNO', 
       image: '/images/playlist1.jpg',
-      url: 'https://open.spotify.com/playlist/2yIlZELYEw4UmYUwoXVI2n?si=a1fcf3dbaa024db6'
+      href: 'https://open.spotify.com/playlist/2yIlZELYEw4UmYUwoXVI2n?si=a1fcf3dbaa024db6'
     },
     { 
       name: 'Technogasm', 
       image: '/images/playlist2.jpg',
-      url: 'https://open.spotify.com/playlist/15PnocaouNCY9NQWQOrXtu?si=cc6c96d908ba4b22'
+      href: 'https://open.spotify.com/playlist/15PnocaouNCY9NQWQOrXtu?si=cc6c96d908ba4b22'
     }
   ];
 
@@ -47,7 +47,6 @@ const PlaylistSection = () => {
             Our Playlists
           </h2>
           <a 
-            href="https://spotify.com"
             target="_blank"
             rel="noopener noreferrer"
             style={{
@@ -107,7 +106,9 @@ const PlaylistSection = () => {
               </div>
               
               <a
-                href="#"
+                href={playlist.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
                   color: 'white',
                   textDecoration: 'none',
@@ -145,4 +146,4 @@ const PlaylistSection = () => {
   );
 };
 
-export default PlaylistSection; 
+export default PlaylistSection;

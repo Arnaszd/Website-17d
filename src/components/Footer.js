@@ -49,7 +49,7 @@ const Footer = () => {
             marginBottom: '40px'
           }}>
             <a 
-              href="https://spotify.com" 
+              href="https://open.spotify.com/playlist/6CQAM7n5Obb62ozHv2i4WZ?si=a7022d97f5f84ffd" 
               target="_blank" 
               rel="noopener noreferrer"
               style={{
@@ -65,7 +65,7 @@ const Footer = () => {
               </svg>
             </a>
             <a 
-              href="https://instagram.com" 
+              href="https://www.instagram.com/seventeendiamonds17/" 
               target="_blank" 
               rel="noopener noreferrer"
               style={{
