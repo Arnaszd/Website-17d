@@ -31,7 +31,7 @@ const Login = () => {
       if (error) throw error;
       navigate('/admin');
     } catch (error) {
-      setError('Neteisingi prisijungimo duomenys');
+      setError('Get outta this page');
       console.error('Error:', error.message);
     }
   };
@@ -69,7 +69,7 @@ const Login = () => {
           textAlign: 'center',
           fontWeight: '500'
         }}>
-          Admin Prisijungimas
+          Log In
         </h1>
         
         <form onSubmit={handleLogin} style={{ width: '100%' }}>
@@ -135,7 +135,7 @@ const Login = () => {
               marginBottom: '10px'
             }}
           >
-            Prisijungti
+            Log In
           </button>
 
           <button
@@ -153,7 +153,7 @@ const Login = () => {
               cursor: 'pointer'
             }}
           >
-            Grįžti
+            Go back
           </button>
         </form>
       </div>

@@ -9,7 +9,7 @@ const PlaylistSection = () => {
       href: 'https://open.spotify.com/playlist/2yIlZELYEw4UmYUwoXVI2n?si=a1fcf3dbaa024db6'
     },
     { 
-      name: 'Technogasm', 
+      name: 'TECHNOGASM⚡', 
       image: '/images/playlist2.jpg',
       href: 'https://open.spotify.com/playlist/15PnocaouNCY9NQWQOrXtu?si=cc6c96d908ba4b22'
     }

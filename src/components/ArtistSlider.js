@@ -22,8 +22,8 @@ const ArtistSlider = () => {
       }
     },
     {
-      name: 'Discole',
-      image: '/images/discole.png',
+      name: 'cedriK',
+      image: '/images/cedrik.png',
       socials: {
         spotify: 'https://open.spotify.com/artist/6VVsZ70zgwx9zx44BKLZle?si=A6yuuBFTS5e9VdDFiF0R-w',
         instagram: 'https://www.instagram.com/discole.music/'
@@ -93,7 +93,7 @@ const ArtistSlider = () => {
                   borderRadius: '8px',
                   overflow: 'hidden',
                   transition: 'transform 0.3s ease',
-                  cursor: 'pointer'
+                  cursor: 'default'
                 }}
               >
                 <div style={{

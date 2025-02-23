@@ -91,7 +91,7 @@ const Footer = () => {
             paddingTop: '20px'
           }}>
             © {new Date().getFullYear()} 17Diamonds. All rights reserved. 
-            <br></br>info@17diamonds.com
+            <br></br>info@seventeendiamonds.com
           </p>
           <Link 
             to="/admin" 

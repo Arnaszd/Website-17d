@@ -25,87 +25,7 @@ const Artists = () => {
         spotify: 'https://spotify.com',
         instagram: 'https://instagram.com'
       }
-    },
-    {
-      name: 'Cepaque',
-      image: '/images/cepaque.jpg',
-      socials: {
-        spotify: 'https://spotify.com',
-        instagram: 'https://instagram.com'
-      }
-    },
-    {
-      name: 'Cepaque',
-      image: '/images/cepaque.jpg',
-      socials: {
-        spotify: 'https://spotify.com',
-        instagram: 'https://instagram.com'
-      }
-    },
-    {
-      name: 'Cepaque',
-      image: '/images/cepaque.jpg',
-      socials: {
-        spotify: 'https://spotify.com',
-        instagram: 'https://instagram.com'
-      }
-    },
-    {
-      name: 'Cepaque',
-      image: '/images/cepaque.jpg',
-      socials: {
-        spotify: 'https://spotify.com',
-        instagram: 'https://instagram.com'
-      }
-    },
-    {
-      name: 'Cepaque',
-      image: '/images/cepaque.jpg',
-      socials: {
-        spotify: 'https://spotify.com',
-        instagram: 'https://instagram.com'
-      }
-    },
-    {
-      name: 'Cepaque',
-      image: '/images/cepaque.jpg',
-      socials: {
-        spotify: 'https://spotify.com',
-        instagram: 'https://instagram.com'
-      }
-    },
-    {
-      name: 'Cepaque',
-      image: '/images/cepaque.jpg',
-      socials: {
-        spotify: 'https://spotify.com',
-        instagram: 'https://instagram.com'
-      }
-    },
-    {
-      name: 'Cepaque',
-      image: '/images/cepaque.jpg',
-      socials: {
-        spotify: 'https://spotify.com',
-        instagram: 'https://instagram.com'
-      }
-    },
-    {
-      name: 'Cepaque',
-      image: '/images/cepaque.jpg',
-      socials: {
-        spotify: 'https://spotify.com',
-        instagram: 'https://instagram.com'
-      }
-    },
-    {
-      name: 'Cepaque',
-      image: '/images/cepaque.jpg',
-      socials: {
-        spotify: 'https://spotify.com',
-        instagram: 'https://instagram.com'
-      }
-    },
+    }
     
   ]);
 
@@ -203,7 +123,7 @@ const Artists = () => {
                   borderRadius: '8px',
                   overflow: 'hidden',
                   transition: 'transform 0.3s ease',
-                  cursor: 'pointer'
+                  cursor: 'default'
                 }}
               >
                 <div style={{
