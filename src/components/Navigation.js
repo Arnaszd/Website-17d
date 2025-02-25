@@ -1,17 +1,16 @@
 import React from 'react';
 
 const Navigation = ({ onNavigate }) => {
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const handleClick = (e) => {
+  // This handler calls onNavigate with the sectionId or falls back to local scrolling.
+  const handleLinkClick = (e, sectionId) => {
     e.preventDefault();
     if (onNavigate) {
-      onNavigate();
+      onNavigate(sectionId);
+    } else {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
@@ -47,7 +46,7 @@ const Navigation = ({ onNavigate }) => {
           zIndex: 1000,
         }}
       >
-        <a 
+        <a
           href="/"
           className="hover-bright text-gradient"
           style={{
@@ -60,34 +59,31 @@ const Navigation = ({ onNavigate }) => {
           17Diamonds
         </a>
 
-        <div style={{
-          display: 'flex',
-          gap: '30px',
-        }}>
-          {['HOME','RELEASES', 'ACHIEVEMENTS', 'ARTISTS', 'SOCIAL MEDIA', 'PLAYLISTS', 'ABOUT', 'DEMO DROP'].map((item, index) => (
-            <a
-              key={item}
-              href="/"
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection(item.toLowerCase().replace(/ /g, '-'));
-              }}
-              className="hover-bright neon-glow"
-              data-aos="fade-down"
-              data-aos-delay={index * 100}
-              style={{
-                color: 'white',
-                textDecoration: 'none',
-                fontSize: '14px',
-                letterSpacing: '1px',
-                position: 'relative',
-                padding: '5px 0',
-                cursor: 'pointer'
-              }}
-            >
-              {item}
-            </a>
-          ))}
+        <div style={{ display: 'flex', gap: '30px' }}>
+          {['HOME', 'RELEASES', 'ACHIEVEMENTS', 'ARTISTS', 'SOCIAL MEDIA', 'PLAYLISTS', 'ABOUT', 'DEMO DROP'].map((item, index) => {
+            const sectionId = item.toLowerCase().replace(/ /g, '-');
+            return (
+              <a
+                key={item}
+                href="/"
+                onClick={(e) => handleLinkClick(e, sectionId)}
+                className="hover-bright neon-glow"
+                data-aos="fade-down"
+                data-aos-delay={index * 100}
+                style={{
+                  color: 'white',
+                  textDecoration: 'none',
+                  fontSize: '14px',
+                  letterSpacing: '1px',
+                  position: 'relative',
+                  padding: '5px 0',
+                  cursor: 'pointer'
+                }}
+              >
+                {item}
+              </a>
+            );
+          })}
         </div>
       </nav>
     </>

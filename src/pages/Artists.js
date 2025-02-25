@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Artists.css';
 import Navigation from '../components/Navigation';
@@ -10,7 +10,8 @@ import 'aos/dist/aos.css';
 const Artists = () => {
   const navigate = useNavigate();
   const [isNavigating, setIsNavigating] = useState(false);
-  const [artists, setArtists] = useState([
+
+  const artists = [
     {
       name: 'Dallax',
       image: '/images/dallax.jpg',
@@ -51,21 +52,14 @@ const Artists = () => {
         instagram: 'https://www.instagram.com/discole.music/'
       }
     }
+  ];
 
-  ]);
-
-  const scrollToSection = (sectionId) => {
+  // Instead of preloading heavy homepage modules, navigate immediately.
+  const handleNavigation = (sectionId) => {
     setIsNavigating(true);
-    // Preload Homepage components
-    Promise.all([
-      import('../components/Hero'),
-      import('../components/Stats'),
-      import('../components/ArtistSlider'),
-      import('../components/PlaylistSection'),
-      import('../components/StatsMap')
-    ]).then(() => {
-      navigate('/', { state: { scrollTo: sectionId } });
-    });
+    navigate('/', { state: { scrollTo: sectionId } });
+    // Optionally, clear the navigation indicator after a brief delay
+    setTimeout(() => setIsNavigating(false), 300);
   };
 
   useEffect(() => {
@@ -76,19 +70,6 @@ const Artists = () => {
     });
   }, []);
 
-  // Preload images
-  const preloadImages = () => {
-    const images = ['/images/discole.webp', '/images/cepaque.webp'];
-    images.forEach(src => {
-      const img = new Image();
-      img.src = src;
-    });
-  };
-
-  const handleNavigation = () => {
-    navigate('/');
-  };
-
   return (
     <div className="artists-page">
       <div className="content-wrapper">
@@ -96,50 +77,48 @@ const Artists = () => {
         <StarryBackground />
 
         {isNavigating && (
-          <div style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: '#000000',
-            zIndex: 9999,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            color: 'white'
-          }}>
+          <div
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: '#000000',
+              zIndex: 9999,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              color: 'white'
+            }}
+          >
             Navigating...
           </div>
         )}
-        
-        <main style={{ 
-          flex: '1 0 auto',
-          padding: '20px',
-          position: 'relative',
-          zIndex: 2,
-          marginTop: '80px'
-        }}>
-          <div style={{
-            maxWidth: '1200px',
-            margin: '0 auto'
-          }}>
-            <h1 style={{
-              fontSize: '32px',
-              textAlign: 'center',
-              marginBottom: '40px'
-            }}>
+
+        <main
+          style={{
+            flex: '1 0 auto',
+            padding: '20px',
+            position: 'relative',
+            zIndex: 2,
+            marginTop: '80px'
+          }}
+        >
+          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+            <h1 style={{ fontSize: '32px', textAlign: 'center', marginBottom: '40px' }}>
               Our Artists
             </h1>
-
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
-              gap: '20px',
-              padding: '0 20px'
-            }}>
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(3, 1fr)',
+                gap: '20px',
+                padding: '0 20px'
+              }}
+            >
               {artists.map((artist, index) => (
-                <div 
+                <div
                   key={index}
                   style={{
                     background: 'rgba(255,255,255,0.05)',
@@ -149,15 +128,17 @@ const Artists = () => {
                     cursor: 'default'
                   }}
                 >
-                  <div style={{
-                    width: '100%',
-                    paddingTop: '100%',
-                    position: 'relative',
-                    background: '#1a1a1a'
-                  }}>
+                  <div
+                    style={{
+                      width: '100%',
+                      paddingTop: '100%',
+                      position: 'relative',
+                      background: '#1a1a1a'
+                    }}
+                  >
                     {artist.image && (
-                      <img 
-                        loading="lazy" // Lazy loading
+                      <img
+                        loading="lazy"
                         src={artist.image}
                         alt={artist.name}
                         style={{
@@ -171,25 +152,31 @@ const Artists = () => {
                       />
                     )}
                   </div>
-                  <div style={{ 
-                    padding: '15px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    gap: '8px'
-                  }}>
-                    <h2 style={{ 
-                      fontSize: '20px',
-                      textAlign: 'center',
-                      fontWeight: '500'
-                    }}>
+                  <div
+                    style={{
+                      padding: '15px',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      gap: '8px'
+                    }}
+                  >
+                    <h2
+                      style={{
+                        fontSize: '20px',
+                        textAlign: 'center',
+                        fontWeight: '500'
+                      }}
+                    >
                       {artist.name}
                     </h2>
-                    <div style={{
-                      display: 'flex',
-                      gap: '12px',
-                      justifyContent: 'center'
-                    }}>
+                    <div
+                      style={{
+                        display: 'flex',
+                        gap: '12px',
+                        justifyContent: 'center'
+                      }}
+                    >
                       {Object.entries(artist.socials).map(([platform, url]) => (
                         <a
                           key={platform}
@@ -207,7 +194,7 @@ const Artists = () => {
                             transition: 'background 0.3s ease'
                           }}
                         >
-                          <img 
+                          <img
                             loading="lazy"
                             src={`/icons/${platform}.svg`}
                             alt={platform}
@@ -226,7 +213,7 @@ const Artists = () => {
             </div>
           </div>
         </main>
-        
+
         <Footer />
       </div>
     </div>
