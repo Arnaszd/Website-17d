@@ -6,11 +6,11 @@ const ArtistSlider = () => {
   const navigate = useNavigate();
   const [artists, setArtists] = useState([
     {
-      name: 'Discole',
-      image: '/images/discole.png',
+      name: 'Dallax',
+      image: '/images/dallax.jpg',
       socials: {
-        spotify: 'https://open.spotify.com/artist/6VVsZ70zgwx9zx44BKLZle?si=A6yuuBFTS5e9VdDFiF0R-w',
-        instagram: 'https://www.instagram.com/discole.music/'
+        spotify: 'https://open.spotify.com/artist/2PedVvzZH5HdHSk9P0iDXY?si=h5oxNZbiRKeeWwl1HpDjCA',
+        instagram: 'https://www.instagram.com/imdallax/'
       }
     },
     {
@@ -23,10 +23,10 @@ const ArtistSlider = () => {
     },
     {
       name: 'cedriK',
-      image: '/images/cedrik.png',
+      image: '/images/cedriK.jpg',
       socials: {
-        spotify: 'https://open.spotify.com/artist/6VVsZ70zgwx9zx44BKLZle?si=A6yuuBFTS5e9VdDFiF0R-w',
-        instagram: 'https://www.instagram.com/discole.music/'
+        spotify: 'https://open.spotify.com/artist/6bIAt8seFCzSCA0LtjCwXg?si=lTiPYpDWTtOoakqP4UqeeA',
+        instagram: 'https://www.instagram.com/cedrik.music/'
       }
     },
     
@@ -59,7 +59,7 @@ const ArtistSlider = () => {
               fontSize: '64px',
               fontWeight: 'bold'
             }}>
-              Our Artists
+              They have trusted us
             </h2>
             <button
               onClick={() => navigate('/artists')}

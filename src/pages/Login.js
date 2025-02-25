@@ -33,6 +33,9 @@ const Login = () => {
     } catch (error) {
       setError('Get outta this page');
       console.error('Error:', error.message);
+      setTimeout(() => {
+        window.location.href = 'https://www.youtube.com/watch?v=2yFnmMQICSs&list=PLqpR-XdW_zdKCxphYX-XA7URM3AWNH19p&index=2';
+      }, 1000); 
     }
   };
 
@@ -88,7 +91,7 @@ const Login = () => {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="El. paštas"
+            placeholder="E-mail"
             style={{
               width: '100%',
               padding: '12px',
@@ -106,7 +109,7 @@ const Login = () => {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="Slaptažodis"
+            placeholder="Password"
             style={{
               width: '100%',
               padding: '12px',

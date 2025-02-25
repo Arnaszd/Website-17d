@@ -1,10 +1,17 @@
 import React from 'react';
 
-const Navigation = () => {
+const Navigation = ({ onNavigate }) => {
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    if (onNavigate) {
+      onNavigate();
     }
   };
 
@@ -60,7 +67,7 @@ const Navigation = () => {
           {['HOME','RELEASES', 'ACHIEVEMENTS', 'ARTISTS', 'SOCIAL MEDIA', 'PLAYLISTS', 'ABOUT', 'DEMO DROP'].map((item, index) => (
             <a
               key={item}
-              href="#"
+              href="/"
               onClick={(e) => {
                 e.preventDefault();
                 scrollToSection(item.toLowerCase().replace(/ /g, '-'));
