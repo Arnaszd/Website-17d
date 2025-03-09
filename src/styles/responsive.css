@@ -1,0 +1,124 @@
+/* Navigacijos stiliai */
+@media (max-width: 768px) {
+  .desktop-menu {
+    display: none !important;
+  }
+  
+  .mobile-menu-button {
+    display: block !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .desktop-menu {
+    display: flex !important;
+  }
+  
+  .mobile-menu-button {
+    display: none !important;
+  }
+}
+
+/* Artistų sekcijos stiliai */
+@media (max-width: 767px) {
+  .section-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  
+  .section-title {
+    font-size: 36px !important;
+    margin-bottom: 20px !important;
+  }
+  
+  .view-all-button {
+    font-size: 16px !important;
+  }
+  
+  .artists-grid {
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .section-header {
+    flex-direction: row !important;
+    align-items: center !important;
+    margin-bottom: 60px !important;
+  }
+  
+  .section-title {
+    font-size: 64px !important;
+    margin-bottom: 0 !important;
+  }
+  
+  .artists-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .artists-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    padding: 0 20px !important;
+  }
+}
+
+/* Administravimo skydelio stiliai */
+@media (max-width: 767px) {
+  .admin-panel-container {
+    flex-direction: column !important;
+  }
+  
+  .mobile-header {
+    display: flex !important;
+  }
+  
+  .desktop-header {
+    display: none !important;
+  }
+  
+  .sidebar {
+    width: 250px !important;
+    left: -250px !important;
+  }
+  
+  .sidebar.open {
+    left: 0 !important;
+  }
+  
+  .main-content {
+    margin-left: 0 !important;
+    padding: 15px !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .admin-panel-container {
+    flex-direction: row !important;
+  }
+  
+  .mobile-header {
+    display: none !important;
+  }
+  
+  .desktop-header {
+    display: block !important;
+  }
+  
+  .sidebar {
+    position: static !important;
+    width: 250px !important;
+    left: 0 !important;
+  }
+  
+  .sidebar-overlay {
+    display: none !important;
+  }
+  
+  .main-content {
+    margin-top: 0 !important;
+    margin-left: 250px !important;
+    padding: 30px !important;
+  }
+} 

@@ -34,7 +34,7 @@ const ArtistSlider = () => {
 
   return (
     <section id="artists" style={{
-      padding: '120px 0',
+      padding: '80px 0',
       background: '#000000',
       position: 'relative',
       overflow: 'hidden'
@@ -49,16 +49,24 @@ const ArtistSlider = () => {
             padding: '0 20px'
           }}
         >
-          <div style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginBottom: '60px'
-          }}>
-            <h2 style={{
-              fontSize: '64px',
-              fontWeight: 'bold'
-            }}>
+          <div 
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              alignItems: 'flex-start',
+              marginBottom: '40px'
+            }}
+            className="section-header"
+          >
+            <h2 
+              style={{
+                fontSize: '36px',
+                fontWeight: 'bold',
+                marginBottom: '20px'
+              }}
+              className="section-title"
+            >
               They have trusted us
             </h2>
             <button
@@ -70,21 +78,25 @@ const ArtistSlider = () => {
                 color: 'white',
                 background: 'none',
                 border: 'none',
-                fontSize: '18px',
+                fontSize: '16px',
                 cursor: 'pointer'
               }}
+              className="view-all-button"
             >
               View all artists
               <span style={{ fontSize: '24px' }}>→</span>
             </button>
           </div>
 
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '20px',
-            padding: '0 20px'
-          }}>
+          <div 
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(1, 1fr)',
+              gap: '20px',
+              padding: '0'
+            }}
+            className="artists-grid"
+          >
             {artists.map((artist, index) => (
               <div 
                 key={index}

@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Navigation = ({ onNavigate }) => {
+  // Pridedame state meniu atidarymui/uždarymui
+  const [menuOpen, setMenuOpen] = useState(false);
+
   // This handler calls onNavigate with the sectionId or falls back to local scrolling.
   const handleLinkClick = (e, sectionId) => {
     e.preventDefault();
@@ -12,6 +15,8 @@ const Navigation = ({ onNavigate }) => {
         element.scrollIntoView({ behavior: 'smooth' });
       }
     }
+    // Uždarome meniu po paspaudimo
+    setMenuOpen(false);
   };
 
   return (
@@ -38,7 +43,7 @@ const Navigation = ({ onNavigate }) => {
           top: 0,
           left: 0,
           right: 0,
-          padding: '20px 40px',
+          padding: '20px',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
@@ -59,7 +64,32 @@ const Navigation = ({ onNavigate }) => {
           17Diamonds
         </a>
 
-        <div style={{ display: 'flex', gap: '30px' }}>
+        {/* Hamburger mygtukas mobiliesiems */}
+        <button 
+          onClick={() => setMenuOpen(!menuOpen)}
+          style={{
+            display: 'block',
+            background: 'none',
+            border: 'none',
+            color: 'white',
+            fontSize: '24px',
+            cursor: 'pointer',
+            padding: '5px',
+            zIndex: 1001
+          }}
+          className="mobile-menu-button"
+        >
+          {menuOpen ? '✕' : '☰'}
+        </button>
+
+        {/* Desktopo navigacija - paslėpta mobiliajame režime */}
+        <div 
+          style={{ 
+            display: 'none',
+            gap: '30px'
+          }}
+          className="desktop-menu"
+        >
           {['HOME', 'RELEASES', 'ACHIEVEMENTS', 'ARTISTS', 'SOCIAL MEDIA', 'PLAYLISTS', 'ABOUT', 'DEMO DROP'].map((item, index) => {
             const sectionId = item.toLowerCase().replace(/ /g, '-');
             return (
@@ -78,6 +108,52 @@ const Navigation = ({ onNavigate }) => {
                   position: 'relative',
                   padding: '5px 0',
                   cursor: 'pointer'
+                }}
+              >
+                {item}
+              </a>
+            );
+          })}
+        </div>
+
+        {/* Mobilusis meniu - pilno ekrano */}
+        <div 
+          style={{
+            position: 'fixed',
+            top: menuOpen ? '0' : '-100%',
+            left: 0,
+            right: 0,
+            height: '100vh',
+            background: 'rgba(0,0,0,0.95)',
+            backdropFilter: 'blur(10px)',
+            WebkitBackdropFilter: 'blur(10px)',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            transition: 'top 0.3s ease',
+            zIndex: 1000,
+            padding: '20px'
+          }}
+          className="mobile-menu"
+        >
+          {['HOME', 'RELEASES', 'ACHIEVEMENTS', 'ARTISTS', 'SOCIAL MEDIA', 'PLAYLISTS', 'ABOUT', 'DEMO DROP'].map((item, index) => {
+            const sectionId = item.toLowerCase().replace(/ /g, '-');
+            return (
+              <a
+                key={item}
+                href="/"
+                onClick={(e) => handleLinkClick(e, sectionId)}
+                style={{
+                  color: 'white',
+                  textDecoration: 'none',
+                  fontSize: '18px',
+                  letterSpacing: '1px',
+                  padding: '15px 0',
+                  cursor: 'pointer',
+                  textAlign: 'center',
+                  width: '100%',
+                  borderBottom: index < 7 ? '1px solid rgba(255,255,255,0.1)' : 'none'
                 }}
               >
                 {item}
