@@ -70,19 +70,24 @@ const Navigation = ({ onNavigate }) => {
           zIndex: 1000,
         }}
       >
-        {/* Logotipas */}
-        <a
-          href="/"
-          className="hover-bright text-gradient"
-          style={{
-            fontSize: '24px',
-            textDecoration: 'none',
-            color: 'white',
-            fontWeight: 'bold',
-          }}
-        >
-          17Diamonds
-        </a>
+        {/* Logotipas - rodomas tik desktope */}
+        {!isMobile && (
+          <a
+            href="/"
+            className="hover-bright text-gradient"
+            style={{
+              fontSize: '24px',
+              textDecoration: 'none',
+              color: 'white',
+              fontWeight: 'bold',
+            }}
+          >
+            17Diamonds
+          </a>
+        )}
+
+        {/* Tuščias div mobiliajame režime, kad išlaikytume flex layout */}
+        {isMobile && <div></div>}
 
         {/* Desktopo navigacija - rodoma tik desktopo režime */}
         {!isMobile && (
