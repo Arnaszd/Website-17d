@@ -154,7 +154,7 @@ const DemoForm = () => {
           name="name"
           value={formData.name}
           onChange={handleChange}
-          placeholder="Jūsų vardas"
+          placeholder="Your name"
           required
           style={{
             width: '100%',
@@ -172,7 +172,7 @@ const DemoForm = () => {
           name="email"
           value={formData.email}
           onChange={handleChange}
-          placeholder="Jūsų el. paštas"
+          placeholder="Your email"
           required
           style={{
             width: '100%',

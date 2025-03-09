@@ -1,9 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import StarryBackground from './StarryBackground';
 
 const ArtistSlider = () => {
   const navigate = useNavigate();
+  const [isMobile, setIsMobile] = useState(false);
+  
+  // Tikriname ekrano dydį
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+    
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
+  
   const [artists, setArtists] = useState([
     {
       name: 'Dallax',
@@ -91,7 +105,7 @@ const ArtistSlider = () => {
           <div 
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(1, 1fr)',
+              gridTemplateColumns: isMobile ? 'repeat(1, 1fr)' : 'repeat(3, 1fr)',
               gap: '20px',
               padding: '0'
             }}
