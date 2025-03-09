@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import supabase from '../lib/supabaseClient';
+import ReCAPTCHA from "react-google-recaptcha";
 
 const DemoForm = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +13,7 @@ const DemoForm = () => {
     privacy: false
   });
   const [status, setStatus] = useState({ message: '', isError: false });
+  const [captchaToken, setCaptchaToken] = useState(null);
 
   useEffect(() => {
     localStorage.clear();
@@ -25,41 +27,14 @@ const DemoForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Get user's IP address
-      const ipResponse = await fetch('https://api.ipify.org?format=json');
-      const { ip } = await ipResponse.json();
-      
-      // Check submission count for today
-      const today = new Date().toISOString().split('T')[0];
-      const { data: submissions } = await supabase
-        .from('form_submissions_log')
-        .select('submission_count')
-        .eq('ip_address', ip)
-        .eq('submission_date', today)
-        .single();
-
-      if (submissions && submissions.submission_count >= 3) {
+      if (!captchaToken) {
         setStatus({
-          message: 'Daily submission limit (3) reached. Please try again tomorrow.',
+          message: 'Please use the captcha to prove you are human',
           isError: true
         });
         return;
       }
 
-      // Insert or update submission log
-      const { error: logError } = await supabase
-        .from('form_submissions_log')
-        .upsert({
-          ip_address: ip,
-          submission_date: today,
-          submission_count: submissions ? submissions.submission_count + 1 : 1
-        }, {
-          onConflict: 'ip_address,submission_date'
-        });
-
-      if (logError) throw logError;
-
-      // Insert form submission
       const { error: submitError } = await supabase
         .from('form_submissions')
         .insert({
@@ -84,6 +59,11 @@ const DemoForm = () => {
       });
       
       e.target.reset();
+      setCaptchaToken(null);
+      
+      if (window.grecaptcha) {
+        window.grecaptcha.reset();
+      }
       
       setStatus({ message: 'Form submitted successfully!', isError: false });
     } catch (error) {
@@ -101,6 +81,10 @@ const DemoForm = () => {
       ...formData,
       [e.target.name]: value
     });
+  };
+
+  const handleCaptchaChange = (token) => {
+    setCaptchaToken(token);
   };
 
   return (
@@ -170,7 +154,7 @@ const DemoForm = () => {
           name="name"
           value={formData.name}
           onChange={handleChange}
-          placeholder="Your Name"
+          placeholder="Jūsų vardas"
           required
           style={{
             width: '100%',
@@ -188,7 +172,7 @@ const DemoForm = () => {
           name="email"
           value={formData.email}
           onChange={handleChange}
-          placeholder="Your Email"
+          placeholder="Jūsų el. paštas"
           required
           style={{
             width: '100%',
@@ -273,6 +257,15 @@ const DemoForm = () => {
             resize: 'vertical'
           }}
         />
+
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+          <ReCAPTCHA
+            sitekey="6LeC-u4qAAAAAEyjaojIdb8jQWlrixJvRn08phl8"
+            onChange={handleCaptchaChange}
+            theme="dark"
+          />
+        </div>
+
         <button
           type="submit"
           style={{
