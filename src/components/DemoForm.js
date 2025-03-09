@@ -29,7 +29,7 @@ const DemoForm = () => {
     try {
       if (!captchaToken) {
         setStatus({
-          message: 'Please use the captcha to prove you are human',
+          message: 'Please use the captcha to prove you are human.',
           isError: true
         });
         return;
