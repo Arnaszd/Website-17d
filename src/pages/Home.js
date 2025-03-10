@@ -12,6 +12,7 @@ import AboutUs from '../components/AboutUs';
 import DemoForm from '../components/DemoForm';
 import Footer from '../components/Footer';
 import StarryBackground from '../components/StarryBackground';
+import MaintenanceAlert from '../components/MaintenanceAlert';
 
 const Home = () => {
   useEffect(() => {
@@ -42,6 +43,7 @@ const Home = () => {
         flexDirection: 'column'
       }}>
         <Navigation />
+        <MaintenanceAlert />
         <main style={{ flex: 1 }}>
           <Hero />
           <Stats />
