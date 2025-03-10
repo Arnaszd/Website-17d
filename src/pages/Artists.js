@@ -44,14 +44,6 @@ const Artists = () => {
         instagram: 'https://www.instagram.com/veniciousmusic/'
       }
     },
-    {
-      name: 'Discole',
-      image: '/images/discole.png',
-      socials: {
-        spotify: 'https://open.spotify.com/artist/6VVsZ70zgwx9zx44BKLZle?si=A6yuuBFTS5e9VdDFiF0R-w',
-        instagram: 'https://www.instagram.com/discole.music/'
-      }
-    }
   ];
 
   // Instead of preloading heavy homepage modules, navigate immediately.
