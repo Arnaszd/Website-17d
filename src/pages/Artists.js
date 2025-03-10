@@ -54,6 +54,22 @@ const Artists = () => {
       }
       
     },
+    {
+      name: 'Tony Red',
+      image: '/images/TonyRed.jpeg',
+      socials: {
+        spotify: 'https://open.spotify.com/artist/2XQaz5giKufbdlpzfgqtJF?si=Y07tvTUgSTS0GAkKLDpUsA',
+        instagram: 'https://www.instagram.com/tonyreddj/profilecard/?igsh=MW1zZHJjd3dpZWQ5Mw=='
+      }
+    },
+    {
+      name: 'Orzechuu',
+      image: '/images/Orzechuu.jpeg',
+      socials: {
+        spotify: 'https://open.spotify.com/artist/3Off9JkVezXwdPGWInOopj?si=sYNCVwPfQFy1n28LfYK9Tg',
+        instagram: 'http://instagram.com/orzechuu.wav'
+      }
+    },
   ];
 
   // Instead of preloading heavy homepage modules, navigate immediately.

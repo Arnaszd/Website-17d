@@ -12,6 +12,7 @@ import AdminPanel from './pages/AdminPanel';
 import ProtectedRoute from './components/ProtectedRoute';
 import AcceptedSubmissions from './pages/AcceptedSubmissions';
 import RejectedSubmissions from './pages/RejectedSubmissions';
+import Privacy from './pages/Privacy';
 
 function App() {
   return (
@@ -35,7 +36,8 @@ function App() {
             <RejectedSubmissions />
           </ProtectedRoute>
         } />
-        <Route path="*" element={<Navigate to="/" />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>
   );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 const twinkle = keyframes`
@@ -30,6 +30,19 @@ const Star = styled.div`
 `;
 
 const StarryBackground = () => {
+  const animationFrameRef = useRef();
+
+  useEffect(() => {
+    // Jūsų animacijos logika čia...
+    
+    // Svarbu: išvalome animaciją
+    return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
+  }, []);
+
   // Sukuriame 100 žvaigždžių su skirtingomis pozicijomis ir animacijos laikais
   const stars = Array.from({ length: 100 }, (_, i) => ({
     id: i,

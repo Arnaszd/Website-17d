@@ -1,5 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
+// Kadangi šriftas yra public kataloge, mums nereikia jo importuoti
+// Vietoj to, apibrėžiame @font-face taisyklę, kuri nurodo teisingą kelią
+const fontFaceStyle = `
+  @font-face {
+    font-family: 'Akira Expanded';
+    src: url('/fonts/akireaexpanded.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+`;
+
 const Navigation = ({ onNavigate }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -35,11 +46,11 @@ const Navigation = ({ onNavigate }) => {
     setMenuOpen(false);
   };
 
-  // Navigacijos elementų sąrašas
-  const navItems = ['HOME', 'RELEASES', 'ACHIEVEMENTS', 'ARTISTS', 'SOCIAL MEDIA', 'PLAYLISTS', 'ABOUT', 'DEMO DROP'];
-
   return (
     <>
+      {/* Įtraukiame šrifto stilius */}
+      <style>{fontFaceStyle}</style>
+
       {/* Blur backdrop */}
       <div
         style={{
@@ -80,6 +91,7 @@ const Navigation = ({ onNavigate }) => {
               textDecoration: 'none',
               color: 'white',
               fontWeight: 'bold',
+              fontFamily: 'Akira Expanded, sans-serif' // Pritaikome importuotą šriftą
             }}
           >
             17Diamonds
@@ -97,7 +109,7 @@ const Navigation = ({ onNavigate }) => {
               gap: '30px' 
             }}
           >
-            {navItems.map((item, index) => {
+            {['HOME', 'RELEASES', 'ACHIEVEMENTS', 'ARTISTS', 'SOCIAL MEDIA', 'PLAYLISTS', 'ABOUT', 'DEMO DROP'].map((item, index) => {
               const sectionId = item.toLowerCase().replace(/ /g, '-');
               return (
                 <a
@@ -162,8 +174,9 @@ const Navigation = ({ onNavigate }) => {
               zIndex: 1000,
               padding: '20px'
             }}
+            className="mobile-menu"
           >
-            {navItems.map((item, index) => {
+            {['HOME', 'RELEASES', 'ACHIEVEMENTS', 'ARTISTS', 'SOCIAL MEDIA', 'PLAYLISTS', 'ABOUT', 'DEMO DROP'].map((item, index) => {
               const sectionId = item.toLowerCase().replace(/ /g, '-');
               return (
                 <a
@@ -179,7 +192,7 @@ const Navigation = ({ onNavigate }) => {
                     cursor: 'pointer',
                     textAlign: 'center',
                     width: '100%',
-                    borderBottom: index < navItems.length - 1 ? '1px solid rgba(255,255,255,0.1)' : 'none'
+                    borderBottom: index < 7 ? '1px solid rgba(255,255,255,0.1)' : 'none'
                   }}
                 >
                   {item}

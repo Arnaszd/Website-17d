@@ -2,6 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import StarryBackground from './StarryBackground';
 
+const fontFaceStyle = `
+  @font-face {
+    font-family: 'Akira Expanded';
+    src: url('/fonts/akireaexpanded.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+`;
+
 const Footer = () => {
   return (
     <footer style={{
@@ -26,7 +35,8 @@ const Footer = () => {
             fontWeight: 'bold',
             background: 'linear-gradient(to right, #fff, rgba(255,255,255,0.7))',
             WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent'
+            WebkitTextFillColor: 'transparent',
+            fontFamily: 'Akira Expanded'
           }}>17Diamonds</h3>
           
           <div style={{ 
@@ -105,6 +115,15 @@ const Footer = () => {
             onMouseOut={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.4)'}
           >
             Admin Panel
+            <br></br>
+          </Link>
+          <Link to="/privacy" style={{  color: 'rgba(255, 255, 255, 0.4)',
+              fontSize: '12px',
+              textDecoration: 'none',
+              transition: 'color 0.3s ease' }}
+              onMouseOver={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.7)'}
+              onMouseOut={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.4)'}>
+            Privacy Policy
           </Link>
         </div>
       </div>
