@@ -38,7 +38,7 @@ const Artists = () => {
     },
     {
       name: 'Venicious',
-      image: '/images/venicious.jpg',
+      image: '/images/Venicious.jpg',
       socials: {
         spotify: 'https://open.spotify.com/artist/0wSwtiiD40xTqpKKWoSiPr?si=Q3mbuo7uRfuEGN_0P65DOw',
         instagram: 'https://www.instagram.com/veniciousmusic/'
