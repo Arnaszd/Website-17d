@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import supabase from '../lib/supabaseClient';
 import Navigation from '../components/Navigation';
+import { Analytics } from "@vercel/analytics/react"
 
 const Login = () => {
   const [email, setEmail] = useState('');

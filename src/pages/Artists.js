@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import StarryBackground from '../components/StarryBackground';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { Analytics } from "@vercel/analytics/react"
 
 const Artists = () => {
   const navigate = useNavigate();

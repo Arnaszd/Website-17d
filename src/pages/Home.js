@@ -13,6 +13,7 @@ import DemoForm from '../components/DemoForm';
 import Footer from '../components/Footer';
 import StarryBackground from '../components/StarryBackground';
 import MaintenanceAlert from '../components/MaintenanceAlert';
+import { Analytics } from "@vercel/analytics/react"
 
 const Home = () => {
   useEffect(() => {
