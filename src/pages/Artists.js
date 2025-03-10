@@ -38,12 +38,21 @@ const Artists = () => {
       }
     },
     {
+      name: 'Nasso (JO)',
+      image: '/images/Nasso.jpeg',
+      socials: {
+        spotify: 'https://open.spotify.com/artist/5KCGokp7fGWx2CsiJTpY3G?si=pmLXuoZGQZGsqL6gvN6yVg',
+        instagram: 'https://www.instagram.com/listentonasso?igsh=em40b2h6ZWZuaW1i&utm_source=qr'
+      }
+    },
+    {
       name: 'Venicious',
       image: '/images/Venicious.jpg',
       socials: {
         spotify: 'https://open.spotify.com/artist/0wSwtiiD40xTqpKKWoSiPr?si=Q3mbuo7uRfuEGN_0P65DOw',
         instagram: 'https://www.instagram.com/veniciousmusic/'
       }
+      
     },
   ];
 
