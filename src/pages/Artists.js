@@ -63,13 +63,22 @@ const Artists = () => {
       }
     },
     {
-      name: 'Orzechuu',
-      image: '/images/Orzechuu.jpeg',
+      name: 'EL Fuego Mus!c',
+      image: '/images/ElFuego.jpeg',
       socials: {
-        spotify: 'https://open.spotify.com/artist/3Off9JkVezXwdPGWInOopj?si=sYNCVwPfQFy1n28LfYK9Tg',
-        instagram: 'http://instagram.com/orzechuu.wav'
+        spotify: 'https://open.spotify.com/artist/3ndWFHjfC9yR8iLhard5qV?si=MQF1aWFGRPCznrpeqLV4ZQ',
+        instagram: 'https://www.instagram.com/elfuegomusic?igsh=MWk0ZjBpdzZnYmhwaw%3D%3D&utm_source=qr'
       }
     },
+    {
+      name: 'Repulse',
+      image: '/images/Repulse.png',
+      socials: {
+        spotify: 'https://open.spotify.com/artist/3s4jmS59dOZO763xw7oW9f?si=RhYs0kUpSYWdb10gKPtCyw',
+        instagram: 'Instagram.com/repulsemusic'
+      }
+    },
+
   ];
 
   // Instead of preloading heavy homepage modules, navigate immediately.
