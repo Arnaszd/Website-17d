@@ -104,7 +104,7 @@ const Stats = () => {
           <div data-aos="zoom-in-up" data-aos-delay="200">
             <StatCard
               title="ALL-TIME STREAMS"
-              value="2.5M"
+              value="3M+"
               type="streams"
             />
           </div>
@@ -120,7 +120,7 @@ const Stats = () => {
           <div data-aos="zoom-in-up" data-aos-delay="600">
             <StatCard
               title="RELEASES"
-              value="35+"
+              value="40+"
               type="releases"
             />
           </div>

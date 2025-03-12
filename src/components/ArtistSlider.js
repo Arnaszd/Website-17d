@@ -97,7 +97,7 @@ const ArtistSlider = () => {
               }}
               className="view-all-button"
             >
-              View all artists
+              View more...
               <span style={{ fontSize: '24px' }}>→</span>
             </button>
           </div>

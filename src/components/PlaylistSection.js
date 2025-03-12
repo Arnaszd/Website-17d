@@ -12,7 +12,12 @@ const PlaylistSection = () => {
       name: 'TECHNOGASM⚡', 
       image: '/images/playlist2.jpg',
       href: 'https://open.spotify.com/playlist/15PnocaouNCY9NQWQOrXtu?si=cc6c96d908ba4b22'
-    }
+    },
+    { 
+      name: 'Summer Techno 2025🌴', 
+      image: '/images/SummerTechno2025v2.jpg',
+      href: 'https://open.spotify.com/playlist/4NBVRXkUltdhTda8BhLbY0?si=75b8f6e90b3b4eb7'
+    },
   ];
 
   return (
